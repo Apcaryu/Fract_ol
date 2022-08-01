@@ -6,12 +6,18 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/01 15:22:17 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:11:06 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
-#include <math.h>
-#include <X11/keysym.h>
-#include <X11/X.h>
-#include <fcntl.h>
+#ifndef FRACTOL_H
+# define FRACTOL_H
+# include "minilibx-linux/mlx.h"
+# include <math.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <fcntl.h>
+
+void	mandelbrot(void *mlx, void *mlx_win, unsigned int iter);
+
+#endif
