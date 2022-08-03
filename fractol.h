@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/01 17:11:06 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/03 15:01:03 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # include <X11/X.h>
 # include <fcntl.h>
 
-void	mandelbrot(void *mlx, void *mlx_win, unsigned int iter);
+void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter);
 
 #endif
