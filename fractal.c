@@ -3,10 +3,12 @@
 
 void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter)
 {
-	int		pos;
+	int		*pos;
 	int		nb_bits;
 	int		s_line;
-	char	*mlx_data_addr = mlx_get_data_addr(mlx_image, &nb_bits, &s_line, &pos);
+	char	*mlx_data_addr = mlx_get_data_addr(mlx_image, &nb_bits, &s_line, pos);
+	unsigned int white = 0x00FFFFFF;
+	unsigned int rose = 0x00FF00FF;
 
 	float	min_x = -2.1;
 	float	max_x = 0.6;
@@ -39,11 +41,11 @@ void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter)
 		{
 			// double	c_r = x / zoom + min_x;
 			// double	c_i = y / zoom + min_y;
-			pos = (y * s_line + x * (nb_bits/8));
+			pos = mlx_image + (y * s_line + x * (nb_bits/8));
 			
 
-			c_r = x/zoom+min_x;
-			c_i = y/zoom+min_y;
+			c_r = x/zoom_x+min_x;
+			c_i = y/zoom_y+min_y;
 			z_r = 0;
 			z_i = 0;
 			i = 0;
@@ -62,20 +64,42 @@ void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter)
 			}
 			if (i == iter)
 			{
-				mlx_data_addr = &pos;
-				*(unsigned int *)mlx_data_addr = 0x00FFFFFF;
+				// mlx_data_addr = &pos;
+				*(unsigned int *)pos = white;
 				// mlx_pixel_put(mlx, mlx_win, x, y, 0x00FFFFFF);
-				printf("x = %d | y = %d\n", x, y);
+				// printf("x = %d | y = %d\n", x, y);
 			}
 			else
 			{
-				mlx_data_addr = &pos;
-				*(unsigned int *)mlx_data_addr = 0x00FF00FF;
-				// mlx_pixel_put(mlx, mlx_win, x, y, 0x00FF00FF);
+				// mlx_data_addr = &pos;
+				*(unsigned int *)pos = rose;
+				mlx_pixel_put(mlx, mlx_win, x, y, 0x00FF00FF);
 			}
 			y++;
 		}
 		x++;
 	}
 	mlx_put_image_to_window(mlx, mlx_win, mlx_image, 0, 0);
+}
+
+void	mandelbrot2()
+{
+	int	px;
+	int	py;
+
+	int	size_x;
+	int	size_y;
+	
+	size_x = 
+	px = 0;
+	while (px < size_x)
+	{
+		py = 0;
+		while (py < size_y)
+		{
+			py++;
+		}
+		px++;	
+	}
+	
 }
