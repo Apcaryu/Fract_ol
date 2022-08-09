@@ -18,6 +18,7 @@ int	main(int argc, char *argv[])
 	// //mlx_pixel_put(mlx, mlx_win, 500, 500, 0x00FFFFFF);
 	// mandelbrot(mlx, mlx_win, mlx_image, 500);
 	mlx_key_hook(mlx_data.mlx_window,esc_key,0);
-
+	mlx_key_hook(mlx_data.mlx_window,input_test,0);
+	mlx_mouse_hook(mlx_data.mlx_window,input_test,0);
 	mlx_loop(mlx_data.mlx);
 }

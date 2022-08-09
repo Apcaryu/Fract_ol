@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/09 16:58:09 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:42:44 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 // ---------- lib for test -----------
 # include <stdlib.h>
+# include <stdio.h>
 // -----------------------------------
 typedef struct s_img
 {
@@ -30,6 +31,7 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		zoom;
 }	t_img;
 
 typedef struct s_data
@@ -48,6 +50,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom);
 /* -----------------------------
 	fonction pour les user input
    ----------------------------- */
+int input_test(int key, t_data mlx_data);
 int	esc_key(int key, t_data *mlx_data);
 
 #endif
