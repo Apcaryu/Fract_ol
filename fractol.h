@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/09 17:42:44 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/09 18:48:05 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom);
    ----------------------------- */
 int input_test(int key, t_data mlx_data);
 int	esc_key(int key, t_data *mlx_data);
+int	user_input(int key, t_data *mlx_data);
 
 #endif
