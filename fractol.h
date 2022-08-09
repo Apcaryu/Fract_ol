@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/09 15:51:07 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:58:09 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,15 @@ typedef struct s_data
 	t_img	img;
 }	t_data;
 
+/* -----------------------------
+	fonction pour les fractal 
+   ----------------------------- */
 void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter);
 void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom);
+
+/* -----------------------------
+	fonction pour les user input
+   ----------------------------- */
+int	esc_key(int key, t_data *mlx_data);
 
 #endif
