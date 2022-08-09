@@ -1,109 +1,55 @@
 #include "fractol.h"
 #include <stdio.h>
 
-void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter)
+void	set_color(char *pos, int i, int i_max)
 {
-	int		*pos;
-	int		nb_bits;
-	int		s_line;
-	char	*mlx_data_addr = mlx_get_data_addr(mlx_image, &nb_bits, &s_line, pos);
-	unsigned int white = 0x00FFFFFF;
-	unsigned int rose = 0x00FF00FF;
+	float	percent_i;
 
-	float	min_x = -2.1;
-	float	max_x = 0.6;
-	float	min_y = -1.2;
-	float	max_y = 1.2;
-	unsigned int	zoom = 100; //100 pixel pour une unite
-	
-	int	image_x = 1000;
-	int image_y = 1000;
-	double zoom_x = image_x/(max_x - min_x);
-	double zoom_y = image_y/(max_y - min_y);
-
-	//float	image_x = (max_x - min_x) * zoom;
-	//float	image_y = (max_y - min_y) * zoom;
-
-	unsigned int	x = 0;
-	unsigned int	y = 0;
-
-	double c_r = x/zoom+min_x;
-	double c_i = y/zoom+min_y;
-	double	z_r = 0;
-	double	z_i = 0;
-	int	i = 0;
-	double	tmp = z_r;
-
-	while (x < image_x)
+	percent_i = 100 * i / i_max;
+	if(percent_i < 5)
 	{
-		y = 0;
-		while (y < image_y)
-		{
-			// double	c_r = x / zoom + min_x;
-			// double	c_i = y / zoom + min_y;
-			pos = mlx_image + (y * s_line + x * (nb_bits/8));
-			
-
-			c_r = x/zoom_x+min_x;
-			c_i = y/zoom_y+min_y;
-			z_r = 0;
-			z_i = 0;
-			i = 0;
-			tmp = z_r;
-
-			z_r = z_r * z_r - z_i * z_i + c_r;
-			z_i = 2 * z_i * tmp + c_i;
-			i = i + 1;
-
-			while (((z_r * z_r + z_i * z_i) < 4) && i < iter)
-			{
-				tmp = z_r;
-				z_r = (z_r * z_r) - (z_i * z_i) + c_r;
-				z_i = 2 * tmp * z_i + c_i;
-				i = i + 1;
-			}
-			if (i == iter)
-			{
-				// mlx_data_addr = &pos;
-				*(unsigned int *)pos = white;
-				// mlx_pixel_put(mlx, mlx_win, x, y, 0x00FFFFFF);
-				// printf("x = %d | y = %d\n", x, y);
-			}
-			else
-			{
-				// mlx_data_addr = &pos;
-				*(unsigned int *)pos = rose;
-				mlx_pixel_put(mlx, mlx_win, x, y, 0x00FF00FF);
-			}
-			y++;
-		}
-		x++;
+		*(unsigned int *)pos = 0x00B34695;
 	}
-	mlx_put_image_to_window(mlx, mlx_win, mlx_image, 0, 0);
+	else if (percent_i < 10)
+	{
+		*(unsigned int *)pos = 0x00FF96E3;
+	}
+	else if (percent_i < 20)
+	{
+		*(unsigned int *)pos = 0x00FF7CDB;
+	}
+	else if (percent_i < 40)
+	{
+		*(unsigned int *)pos = 0x0048B334;
+	}
+	else if (percent_i < 100)
+	{
+		*(unsigned int *)pos = 0x0092FF7D;
+	}
 }
 
-void	mandelbrot2(t_data *mlx_data, unsigned int iter)
+void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom)
 {
 	char		*pos;
 	unsigned int white = 0x00FFFFFF;
-	unsigned int rose = 0x00FF00FF;
+	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	float	min_x = -2.1;
-	float	max_x = 0.6;
-	float	min_y = -1.2;
-	float	max_y = 1.2;
-	unsigned int	zoom = 100; //100 pixel pour une unite
+	float	min_x = -2.1 / zoom;
+	float	max_x = 0.6 / zoom;
+	float	min_y = -1.2 / zoom;
+	float	max_y = 1.2 / zoom;
+	// float	zoom = 100; //100 pixel pour une unite
 	
-	int	image_x = 1000;
-	int image_y = 1000;
+	int	image_x = WIN_X;
+	int image_y = WIN_Y;
 	double zoom_x = image_x/(max_x - min_x);
 	double zoom_y = image_y/(max_y - min_y);
 
 	unsigned int	x = 0;
 	unsigned int	y = 0;
 
-	double c_r = x/zoom+min_x;
-	double c_i = y/zoom+min_y;
+	double c_r = x/zoom_x+min_x;
+	double c_i = y/zoom_y+min_y;
 	double	z_r = 0;
 	double	z_i = 0;
 	int	i = 0;
@@ -115,7 +61,6 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 		while (y < image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			
 
 			c_r = x/zoom_x+min_x;
 			c_i = y/zoom_y+min_y;
@@ -137,11 +82,12 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 			}
 			if (i == iter)
 			{
-				*(unsigned int *)pos = white;
+				*(unsigned int *)pos = white / (z_r * 10000) / (z_i * 10000);
 			}
 			else
 			{
-				*(unsigned int *)pos = rose;
+				// set_color(pos, i, iter);
+				*(unsigned int *)pos = rose/i; //* (100 * i/iter) * (100 * x/ image_x);
 			}
 			y++;
 		}

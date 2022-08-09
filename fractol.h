@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/04 16:07:39 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:51:07 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <X11/X.h>
 # include <fcntl.h>
 
+// ---------- lib for test -----------
+# include <stdlib.h>
+// -----------------------------------
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -37,6 +40,6 @@ typedef struct s_data
 }	t_data;
 
 void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter);
-void	mandelbrot2(t_data *mlx_data, unsigned int iter);
+void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom);
 
 #endif

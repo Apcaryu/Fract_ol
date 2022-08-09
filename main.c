@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	// void	*mlx;
 	// void	*mlx_win;
@@ -11,7 +11,7 @@ int	main(void)
 	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");
 	mlx_data.img.mlx_img = mlx_new_image(mlx_data.mlx, WIN_X, WIN_Y);
 	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
-	mandelbrot2(&mlx_data, 500);
+	mandelbrot2(&mlx_data, 50, atoi(argv[1]));
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world");
 	// mlx_image = mlx_new_image(mlx, 1000, 1000);
