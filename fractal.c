@@ -28,16 +28,17 @@ void	set_color(char *pos, int i, int i_max)
 	}
 }
 
-void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom)
+void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 {
 	char		*pos;
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	float	min_x = -2.1 / zoom;
-	float	max_x = 0.6 / zoom;
-	float	min_y = -1.2 / zoom;
-	float	max_y = 1.2 / zoom;
+	float	min_x = -2.1 / mlx_data->img.zoom;
+	float	max_x = 0.6 / mlx_data->img.zoom;
+	float	min_y = -1.2 / mlx_data->img.zoom;
+	float	max_y = 1.2 / mlx_data->img.zoom;
+	//printf("zoom = %d\n", mlx_data->img.zoom);
 	// float	zoom = 100; //100 pixel pour une unite
 	
 	int	image_x = WIN_X;
@@ -82,12 +83,14 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter, int zoom)
 			}
 			if (i == iter)
 			{
-				*(unsigned int *)pos = white / (z_r * 10000) / (z_i * 10000);
+				*(unsigned int *)pos = white / ((z_r * 10000) / (z_i * 10000));
+				// pos = *(unsigned int *)pos & 0x00FFFFFF;
+				// printf("x: %d | y: %d | color: %x\n", x, y, pos);
 			}
 			else
 			{
 				// set_color(pos, i, iter);
-				*(unsigned int *)pos = rose/i; //* (100 * i/iter) * (100 * x/ image_x);
+				*(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 			}
 			y++;
 		}
