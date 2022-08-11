@@ -49,8 +49,8 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int	x = 0;
 	unsigned int	y = 0;
 
-	double c_r = x/zoom_x+min_x;
-	double c_i = y/zoom_y+min_y;
+	double c_r;
+	double c_i;
 	double	z_r = 0;
 	double	z_i = 0;
 	int	i = 0;

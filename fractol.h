@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/10 17:45:59 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:39:14 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*mlx_window;
+	int		mod;
 	t_img	img;
 }	t_data;
 
