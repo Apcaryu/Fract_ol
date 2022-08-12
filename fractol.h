@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/11 17:39:14 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/12 12:55:05 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_data
    ----------------------------- */
 void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter);
 void	mandelbrot2(t_data *mlx_data, unsigned int iter);
+void	julia(t_data *mlx_data, unsigned int iter);
 
 /* -----------------------------
 	fonction pour les user input
