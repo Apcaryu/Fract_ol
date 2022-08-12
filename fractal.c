@@ -1,4 +1,5 @@
 #include "fractol.h"
+#include "complex.h"
 #include <stdio.h>
 
 void	set_color(char *pos, int i, int i_max)
@@ -49,8 +50,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int	x = 0;
 	unsigned int	y = 0;
 
-	double c_r;
-	double c_i;
+	t_cmplx	c;
 	double	z_r = 0;
 	double	z_i = 0;
 	int	i = 0;
@@ -63,22 +63,22 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
 
-			c_r = x/zoom_x+min_x;
-			c_i = y/zoom_y+min_y;
+			c.rl = x/zoom_x+min_x;
+			c.im = y/zoom_y+min_y;
 			z_r = 0;
 			z_i = 0;
 			i = 0;
 			tmp = z_r;
 
-			z_r = z_r * z_r - z_i * z_i + c_r;
-			z_i = 2 * z_i * tmp + c_i;
+			z_r = z_r * z_r - z_i * z_i + c.rl;
+			z_i = 2 * z_i * tmp + c.im;
 			i = i + 1;
 
 			while (((z_r * z_r + z_i * z_i) < 4) && i < iter)
 			{
 				tmp = z_r;
-				z_r = (z_r * z_r) - (z_i * z_i) + c_r;
-				z_i = 2 * tmp * z_i + c_i;
+				z_r = (z_r * z_r) - (z_i * z_i) + c.rl;
+				z_i = 2 * tmp * z_i + c.im;
 				i = i + 1;
 			}
 			if (i == iter)
