@@ -2,33 +2,6 @@
 #include "complex.h"
 #include <stdio.h>
 
-void	set_color(char *pos, int i, int i_max)
-{
-	float	percent_i;
-
-	percent_i = 100 * i / i_max;
-	if(percent_i < 5)
-	{
-		*(unsigned int *)pos = 0x00B34695;
-	}
-	else if (percent_i < 10)
-	{
-		*(unsigned int *)pos = 0x00FF96E3;
-	}
-	else if (percent_i < 20)
-	{
-		*(unsigned int *)pos = 0x00FF7CDB;
-	}
-	else if (percent_i < 40)
-	{
-		*(unsigned int *)pos = 0x0048B334;
-	}
-	else if (percent_i < 100)
-	{
-		*(unsigned int *)pos = 0x0092FF7D;
-	}
-}
-
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 {
 	char		*pos;
@@ -39,9 +12,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	float	max_x = 0.6 / mlx_data->img.zoom;
 	float	min_y = -1.2 / mlx_data->img.zoom;
 	float	max_y = 1.2 / mlx_data->img.zoom;
-	//printf("zoom = %d\n", mlx_data->img.zoom);
-	// float	zoom = 100; //100 pixel pour une unite
-	
+		
 	int	image_x = WIN_X;
 	int image_y = WIN_Y;
 	double zoom_x = image_x/(max_x - min_x);
@@ -51,10 +22,8 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int	y = 0;
 
 	t_cmplx	c;
-	double	z_r = 0;
-	double	z_i = 0;
+	t_cmplx z;
 	int	i = 0;
-	double	tmp = z_r;
 
 	while (x < image_x)
 	{
@@ -62,36 +31,21 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 		while (y < image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-
 			c.rl = x/zoom_x+min_x;
 			c.im = y/zoom_y+min_y;
-			z_r = 0;
-			z_i = 0;
+			z.rl = 0;
+			z.im = 0;
 			i = 0;
-			tmp = z_r;
-
-			z_r = z_r * z_r - z_i * z_i + c.rl;
-			z_i = 2 * z_i * tmp + c.im;
-			i = i + 1;
-
-			while (((z_r * z_r + z_i * z_i) < 4) && i < iter)
+			
+			while(z.rl * z.rl + z.im * z.im < 4 && i < iter)
 			{
-				tmp = z_r;
-				z_r = (z_r * z_r) - (z_i * z_i) + c.rl;
-				z_i = 2 * tmp * z_i + c.im;
-				i = i + 1;
+				z = add_cmplx(multiply_cmplx(z, z), c);
+				i++;
 			}
 			if (i == iter)
-			{
-				*(unsigned int *)pos = white / ((z_r * 10000) / (z_i * 10000));
-				// pos = *(unsigned int *)pos & 0x00FFFFFF;
-				// printf("x: %d | y: %d | color: %x\n", x, y, pos);
-			}
+				*(unsigned int *)pos = white / ((z.rl * 10000) / (z.im * 10000));
 			else
-			{
-				// set_color(pos, i, iter);
 				*(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
-			}
 			y++;
 		}
 		x++;
