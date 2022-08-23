@@ -13,12 +13,19 @@ int	main(int argc, char *argv[])
 	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
 	mlx_data.img.zoom = 1;
 	// mandelbrot2(&mlx_data, 50);
-	while (mlx_data.img.zoom < 1000000)
+	julia(&mlx_data, 5000);
+	while (1)
+	{
+		color_change(&mlx_data);
+	}
+	
+	/*
+	while (mlx_data.img.zoom < 2)
 	{
 		julia(&mlx_data, 5000);
 		mlx_data.img.zoom++;
 	}
-	
+	*/
 	// julia(&mlx_data, 500);
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world");

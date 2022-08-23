@@ -94,13 +94,46 @@ void	julia(t_data *mlx_data, unsigned int iter)
 				i++;
 			}
 			if (i == iter)
+			{
 				*(unsigned int *)pos = white / ((z.rl * 10000) / (z.im * 10000));
+				printf("int: %d | hex: %X", *(unsigned int *)pos, *(unsigned int *)pos);
+			}
 			else
+			{
 				*(unsigned int *)pos = 0x00000000 + i;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
+				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
+			}
+			y++;
+		}
+		x++;
+	}
+	printf("int : %d, hex : %X", 584, 584);
+	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
+}
+
+void	color_change(t_data *mlx_data)
+{
+	unsigned int	x;
+	unsigned int	y;
+	char			*pos;
+
+	x = 0;
+	while (x < WIN_X)
+	{
+		y = 0;
+		while (y < WIN_Y)
+		{
+			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
+			if (*(unsigned int *)pos == 0xFFFFFF)
+			{
+				*(unsigned int *)pos = 0;
+			}
+			else
+				*(unsigned int *)pos = *(unsigned int *)pos + 1;
 			y++;
 		}
 		x++;
 	}
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
-} 
+}
