@@ -47,4 +47,10 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
     	mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
 		mlx_loop_end(mlx_data->mlx);
 	}
+
+	/* ------ Left click ------*/
+	else if (key==1)
+	{
+		color_change(mlx_data);
+	}
 }

@@ -1,5 +1,6 @@
 #include "fractol.h"
 #include "complex.h"
+#include "color.h"
 #include <stdio.h>
 
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
@@ -100,7 +101,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			}
 			else
 			{
-				*(unsigned int *)pos = 0x00000000 + i;
+				*(unsigned int *)pos = 0x00000000 + i*0x010001;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
@@ -125,15 +126,56 @@ void	color_change(t_data *mlx_data)
 		while (y < WIN_Y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			if (*(unsigned int *)pos == 0xFFFFFF)
+			if (*(unsigned int *)pos == 0)
 			{
-				*(unsigned int *)pos = 0;
+
+			}
+			else if (*(unsigned int *)pos == 0xFF0000)
+			{
+				*(unsigned int *)pos = 1;
 			}
 			else
-				*(unsigned int *)pos = *(unsigned int *)pos + 1;
+				*(unsigned int *)pos = *(unsigned int *)pos + 0x010001;
 			y++;
 		}
 		x++;
 	}
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 }
+/*
+void	color_change(t_data *mlx_data)
+{
+	unsigned int	x;
+	unsigned int	y;
+	char			*pos;
+	t_rgb			rgb;
+	t_hsv			hsv;
+
+	x = 0;
+	while (x < WIN_X)
+	{
+		y = 0;
+		while (y < WIN_Y)
+		{
+			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
+			rgb = int_to_rgb(*(unsigned int *)pos);
+			hsv = rgb_to_hsv(rgb);
+			if (hsv.h >= 360)
+			{
+				hsv.h = 0;
+			}
+			else
+			{
+				hsv.h = hsv.h + 1;
+				if (hsv.h >= 360)
+					hsv.h = 0;
+			}
+			rgb = hsv_to_rgb(hsv);
+			*(unsigned int *)pos = rgb_to_int(rgb);
+			y++;
+		}
+		x++;
+	}
+	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
+}
+*/
