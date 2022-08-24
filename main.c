@@ -13,7 +13,7 @@ int	main(int argc, char *argv[])
 	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
 	mlx_data.img.zoom = 1;
 	// mandelbrot2(&mlx_data, 5000);
-	julia(&mlx_data, 5000);
+	julia(&mlx_data, 50);
 	mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);
 	// color_change(&mlx_data);
 	

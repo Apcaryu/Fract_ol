@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/24 15:19:21 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:30:57 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
-# include "color_converter.h"
+# include "color.h"
 # include "complex.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/keysym.h>

@@ -1,4 +1,4 @@
-#include "color_converter.h"
+#include "color.h"
 
 t_rgb	hsv_to_rgb(t_hsv hsv_color)
 {

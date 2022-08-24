@@ -94,7 +94,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			}
 			if (i == iter)
 			{
-				*(unsigned int *)pos = white / ((z.rl * 10000) / (z.im * 10000));
+				*(unsigned int *)pos = white /*/ ((z.rl * 10000) / (z.im * 10000))*/;
 				printf("int: %d | hex: %X", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
 			else
