@@ -100,7 +100,8 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			}
 			else
 			{
-				*(unsigned int *)pos = 0x00000000 + i + i * 2; // *0x010001;
+				choose_color(pos, i, iter);
+				// *(unsigned int *)pos = 0x00000000 + i + i * 2; // *0x010001;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
@@ -177,5 +178,24 @@ int	color_change(t_data *mlx_data)
 		x++;
 	}
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
+	return(0);
+}
+
+unsigned int	choose_color(char *pos, int i, int iter)
+{
+	float	taux;
+
+	taux = (100*i)/(double)iter;
+	taux *= 100;
+	if (taux < 30)
+		*(unsigned int *)pos = 0xB33E97 * ((100*i/(double)iter));
+	else if (taux < 55)
+		*(unsigned int *)pos = 0xFFE97D * ((100*i/(double)iter));
+	else if (taux < 75)
+		*(unsigned int *)pos = 0xFF73DE* ((100*i/(double)iter));
+	else if (taux < 90)
+		*(unsigned int *)pos = 0x59FFFC* ((100*i/(double)iter));
+	else
+		*(unsigned int *)pos = 0x47B3B1* ((100*i/(double)iter));
 	return(0);
 }
