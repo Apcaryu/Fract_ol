@@ -1,6 +1,4 @@
 #include "fractol.h"
-#include "complex.h"
-#include "color.h"
 #include <stdio.h>
 
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
@@ -101,7 +99,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			}
 			else
 			{
-				*(unsigned int *)pos = 0x00000000 + i*0x010001;
+				*(unsigned int *)pos = 0x00000000 + i; // *0x010001;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
@@ -112,7 +110,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	printf("int : %d, hex : %X", 584, 584);
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 }
-
+/*
 void	color_change(t_data *mlx_data)
 {
 	unsigned int	x;
@@ -130,9 +128,9 @@ void	color_change(t_data *mlx_data)
 			{
 
 			}
-			else if (*(unsigned int *)pos == 0xFF0000)
+			else if (*(unsigned int *)pos == 0xFF00FF)
 			{
-				*(unsigned int *)pos = 1;
+				*(unsigned int *)pos = 0x010001;
 			}
 			else
 				*(unsigned int *)pos = *(unsigned int *)pos + 0x010001;
@@ -142,8 +140,8 @@ void	color_change(t_data *mlx_data)
 	}
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 }
-/*
-void	color_change(t_data *mlx_data)
+*/
+int	color_change(t_data *mlx_data)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -177,5 +175,5 @@ void	color_change(t_data *mlx_data)
 		x++;
 	}
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
+	return(0);
 }
-*/
