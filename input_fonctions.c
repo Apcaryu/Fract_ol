@@ -23,8 +23,8 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		printf("Up arrow\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 1;
 		// printf("zoom = %d\n", mlx_data->img.zoom);
-		// mandelbrot2(mlx_data, 50);
-		julia(mlx_data, 5000);
+		mandelbrot2(mlx_data, 5000);
+		// julia(mlx_data, 5000);
 	}
 
 	/* ------- Down Arrow ------- */
@@ -35,8 +35,8 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		{
 			mlx_data->img.zoom = mlx_data->img.zoom - 1;
 			// printf("zoom = %d\n", mlx_data->img.zoom);
-			// mandelbrot2(mlx_data, 50);
-			julia(mlx_data, 5000);
+			mandelbrot2(mlx_data, 5000);
+			// julia(mlx_data, 5000);
 		}
 	}
 

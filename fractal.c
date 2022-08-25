@@ -42,9 +42,10 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 				i++;
 			}
 			if (i == iter)
-				*(unsigned int *)pos = white / ((z.rl * 10000) / (z.im * 10000));
+				*(unsigned int *)pos = white /*/ (z.rl *10000) / (z.im * 10000)*/ / ((z.rl * 10000) / (z.im * 10000));
 			else
-				*(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
+				*(unsigned int *)pos = 0x00000000 + i  * 0x010101;
+				// *(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 			y++;
 		}
 		x++;
@@ -81,8 +82,8 @@ void	julia(t_data *mlx_data, unsigned int iter)
 		while (y < image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			c.rl = -0.76/*0.285*/;
-			c.im = 0.12/*0.013*/;
+			c.rl = /*0.35*/-0.76/*0.285*/;
+			c.im = /*0.05*/0.12/*0.013*/;
 			z.rl = x/zoom_x+min_x;
 			z.im = y/zoom_y+min_y;
 			i = 0;
@@ -100,8 +101,8 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			}
 			else
 			{
-				choose_color(pos, i, iter);
-				// *(unsigned int *)pos = 0x00000000 + i + i * 2; // *0x010001;
+				// choose_color(pos, i, iter);
+				*(unsigned int *)pos = 0x00000000 + i  * 0x010101;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
@@ -112,7 +113,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	// printf("int : %d, hex : %X", 584, 584);
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 }
-/*
+
 int	color_change(t_data *mlx_data)
 {
 	unsigned int	x;
@@ -126,16 +127,16 @@ int	color_change(t_data *mlx_data)
 		while (y < WIN_Y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			if (*(unsigned int *)pos == 0)
+			/*if (*(unsigned int *)pos == 0xFFFFFF)
 			{
 
 			}
-			else if (*(unsigned int *)pos == 0xFF)
+			else */if (*(unsigned int *)pos <= 0x0)
 			{
-				*(unsigned int *)pos = 1;
+				*(unsigned int *)pos = 0xFFFFFF;
 			}
 			else
-				*(unsigned int *)pos = *(unsigned int *)pos + 1;
+				*(unsigned int *)pos = *(unsigned int *)pos - 0x010101;
 			y++;
 		}
 		x++;
@@ -143,7 +144,7 @@ int	color_change(t_data *mlx_data)
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 	return(0);
 }
-*/
+/*
 int	color_change(t_data *mlx_data)
 {
 	unsigned int	x;
@@ -180,7 +181,7 @@ int	color_change(t_data *mlx_data)
 	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
 	return(0);
 }
-
+*/
 unsigned int	choose_color(char *pos, int i, int iter)
 {
 	float	taux;
@@ -188,14 +189,14 @@ unsigned int	choose_color(char *pos, int i, int iter)
 	taux = (100*i)/(double)iter;
 	taux *= 100;
 	if (taux < 30)
-		*(unsigned int *)pos = 0xB33E97 * ((100*i/(double)iter));
+		*(unsigned int *)pos = 0xB33E97 /** ((100*i/(double)iter))*/;
 	else if (taux < 55)
-		*(unsigned int *)pos = 0xFFE97D * ((100*i/(double)iter));
+		*(unsigned int *)pos = 0xFFE97D /** ((100*i/(double)iter))*/;
 	else if (taux < 75)
-		*(unsigned int *)pos = 0xFF73DE* ((100*i/(double)iter));
+		*(unsigned int *)pos = 0xFF73DE /** ((100*i/(double)iter))*/;
 	else if (taux < 90)
-		*(unsigned int *)pos = 0x59FFFC* ((100*i/(double)iter));
+		*(unsigned int *)pos = 0x59FFFC /** ((100*i/(double)iter))*/;
 	else
-		*(unsigned int *)pos = 0x47B3B1* ((100*i/(double)iter));
+		*(unsigned int *)pos = 0x47B3B1 /** ((100*i/(double)iter))*/;
 	return(0);
 }
