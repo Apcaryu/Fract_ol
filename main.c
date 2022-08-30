@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 		printf("Julia param custom\n");
 	}
 	
-
+	/* ---------- For test mlx ----------
 	mlx_data.mlx = mlx_init();
 	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");
 	mlx_data.img.mlx_img = mlx_new_image(mlx_data.mlx, WIN_X, WIN_Y);
@@ -29,14 +29,7 @@ int	main(int argc, char *argv[])
 	mandelbrot2(&mlx_data, 50);
 	// julia(&mlx_data, 5000);
 	// color_change(&mlx_data);
-	
-	/*
-	while (mlx_data.img.zoom < 2)
-	{
-		julia(&mlx_data, 5000);
-		mlx_data.img.zoom++;
-	}
-	*/
+
 	// julia(&mlx_data, 500);
 	// mlx = mlx_init();
 	// mlx_win = mlx_new_window(mlx, 1000, 1000, "Hello world");
@@ -49,4 +42,5 @@ int	main(int argc, char *argv[])
 	// mlx_mouse_hook(mlx_data.mlx_window,input_test,0);
 	mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);
 	mlx_loop(mlx_data.mlx);
+	*/
 }
