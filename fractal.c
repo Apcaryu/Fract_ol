@@ -76,14 +76,16 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	t_cmplx z;
 	int	i = 0;
 
+	t_rgb rgb;
+	int color_int;
 	while (x < image_x)
 	{
 		y = 0;
 		while (y < image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			c.rl = /*0.35*/-0.76/*0.285*/;
-			c.im = /*0.05*/0.12/*0.013*/;
+			c.rl = /*0.35*//*-0.63*//*0.35*/-0.76/*0.285*/;
+			c.im = /*-0.36*//*-0.4*//*0.05*/0.12/*0.013*/;
 			z.rl = x/zoom_x+min_x;
 			z.im = y/zoom_y+min_y;
 			i = 0;
@@ -91,18 +93,24 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			while(z.rl * z.rl + z.im * z.im < 4 && i < iter)
 			{
 				z = add_cmplx(multiply_cmplx(z, z), c);
+				// z = add_cmplx(power_cmplx(z, 3), c);
 				i++;
 			}
 			if (i == iter)
 			{
-				*(unsigned int *)pos = white /*/ ((z.rl * 10000) / (z.im * 10000))*/;
+				rgb = int_to_rgb(0xFFFFFF);
+				rgb.r = rgb.r * (100*x/WIN_X) / (double)(100*y/WIN_Y);
+				rgb.g = rgb.g * (100*x/WIN_X) / (double)(100*y/WIN_Y);
+				rgb.b = rgb.b * (100*x/WIN_X) / (double)(100*y/WIN_Y);
+				color_int = rgb_to_int(rgb);
+				*(unsigned int *)pos = /*color_int*/white/* / ((z.rl * 10000) / (z.im * 10000))*/;
 				// *(unsigned int *)pos = white / (z.rl * 10000) / (z.im * 10000 + 1);
 				// printf("int: %d | hex: %X", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
 			else
 			{
 				// choose_color(pos, i, iter);
-				*(unsigned int *)pos = 0x00000000 + i  * 0x010101;
+				*(unsigned int *)pos = 0x00000000 + i  * 0x010001;
 				// *(unsigned int *)pos = 0x00FF0000/*rose*//*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
 				// printf("int: %d | hex: %X\n", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
@@ -189,14 +197,14 @@ unsigned int	choose_color(char *pos, int i, int iter)
 	taux = (100*i)/(double)iter;
 	taux *= 100;
 	if (taux < 30)
-		*(unsigned int *)pos = 0xB33E97 /** ((100*i/(double)iter))*/;
+		*(unsigned int *)pos = 0xB33E97 * (taux/100) /** ((100*i/(double)iter))*/;
 	else if (taux < 55)
-		*(unsigned int *)pos = 0xFFE97D /** ((100*i/(double)iter))*/;
+		*(unsigned int *)pos = 0xFFE97D  * (taux/100)/** ((100*i/(double)iter))*/;
 	else if (taux < 75)
-		*(unsigned int *)pos = 0xFF73DE /** ((100*i/(double)iter))*/;
+		*(unsigned int *)pos = 0xFF73DE * (taux/100)/** ((100*i/(double)iter))*/;
 	else if (taux < 90)
-		*(unsigned int *)pos = 0x59FFFC /** ((100*i/(double)iter))*/;
+		*(unsigned int *)pos = 0x59FFFC * (taux/100)/** ((100*i/(double)iter))*/;
 	else
-		*(unsigned int *)pos = 0x47B3B1 /** ((100*i/(double)iter))*/;
+		*(unsigned int *)pos = 0x47B3B1 * (taux/100)/** ((100*i/(double)iter))*/;
 	return(0);
 }

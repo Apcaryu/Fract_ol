@@ -6,14 +6,14 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/25 18:10:28 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/30 15:22:37 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIN_X 3000
-# define WIN_Y 3000
+# define WIN_X 1000
+# define WIN_Y 1000
 # include "color.h"
 # include "complex.h"
 # include "minilibx-linux/mlx.h"
