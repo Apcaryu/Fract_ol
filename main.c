@@ -7,6 +7,20 @@ int	main(int argc, char *argv[])
 	// void	*mlx_image;
 	t_data	mlx_data;
 
+	if (argc <= 1 || 4 <= argc)
+	{
+		printf("C'est non\n");
+	}
+	else if (argc == 2)
+	{
+		printf("LET'S GOOOOOOOO\n");
+	}
+	else if (argc == 3)
+	{
+		printf("Julia param custom\n");
+	}
+	
+
 	mlx_data.mlx = mlx_init();
 	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");
 	mlx_data.img.mlx_img = mlx_new_image(mlx_data.mlx, WIN_X, WIN_Y);
