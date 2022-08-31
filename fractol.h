@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/30 15:22:37 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:23:21 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
+# include "libft/libft.h"
 # include "color.h"
 # include "complex.h"
 # include "minilibx-linux/mlx.h"
