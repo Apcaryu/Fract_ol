@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/05 18:07:50 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:03:29 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_data
 	int		mod;
 	t_img	img;
 	t_zc	zc;
+	t_mouse_pos	mouse_pos;
 }	t_data;
 
 /* -----------------------------

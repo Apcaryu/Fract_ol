@@ -13,6 +13,8 @@ int	main(int argc, char *argv[])
 	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
 	mlx_data.img.zoom = 1;
 	// printf("%f | %f\n", atof(argv[2]), atof(argv[3]));
+	mlx_data.mouse_pos.x_pos = 0;
+	mlx_data.mouse_pos.y_pos = 0;
 	if (argc <= 1 || 4 < argc)
 	{
 		printf("C'est non\n");
