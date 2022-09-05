@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/08/31 12:23:21 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:07:50 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
+# define COLOR_MIN 0xFEFEFE
+# define DE_COLOR 0x010101
 # include "libft/libft.h"
 # include "color.h"
 # include "complex.h"
+# include "error.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <fcntl.h>
+# include <math.h>
 
 // ---------- lib for test -----------
 # include <stdlib.h>
 # include <stdio.h>
 // -----------------------------------
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -33,8 +38,20 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-	int		zoom;
+	double		zoom;
 }	t_img;
+
+typedef struct s_zc
+{
+	t_cmplx	z;
+	t_cmplx	c;
+}	t_zc;
+
+typedef struct mouse_pos
+{
+	int	x_pos;
+	int	y_pos;
+} t_mouse_pos;
 
 typedef struct s_data
 {
@@ -42,6 +59,7 @@ typedef struct s_data
 	void	*mlx_window;
 	int		mod;
 	t_img	img;
+	t_zc	zc;
 }	t_data;
 
 /* -----------------------------
@@ -59,5 +77,7 @@ unsigned int	choose_color(char *pos, int i, int iter);
 int input_test(int key);
 int	esc_key(int key, t_data *mlx_data);
 int	user_input(int key, int x, int y, t_data *mlx_data);
+
+void	fractal_type(int argc, char *argv[], t_data *mlx_data);
 
 #endif

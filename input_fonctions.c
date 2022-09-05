@@ -17,14 +17,19 @@ int	esc_key(int key, t_data *mlx_data)
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
 {
+	printf("Mouse pos = %d | %d\n", x, y);
 	/* ------- Up Arrow ------- */
 	if (key==4/*65362*/)
 	{
 		printf("Up arrow\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 1;
 		// printf("zoom = %d\n", mlx_data->img.zoom);
+		if(mlx_data->mod == 1)
+			mandelbrot2(mlx_data, 5000);
+		else if (mlx_data->mod == 2)
+			julia(mlx_data, 5000);
 		// mandelbrot2(mlx_data, 5000);
-		julia(mlx_data, 5000);
+		// julia(mlx_data, 5000);
 	}
 
 	/* ------- Down Arrow ------- */
@@ -35,8 +40,10 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		{
 			mlx_data->img.zoom = mlx_data->img.zoom - 1;
 			// printf("zoom = %d\n", mlx_data->img.zoom);
-			mandelbrot2(mlx_data, 5000);
-			// julia(mlx_data, 5000);
+			if(mlx_data->mod == 1)
+				mandelbrot2(mlx_data, 5000);
+			else if (mlx_data->mod == 2)
+				julia(mlx_data, 5000);
 		}
 	}
 
