@@ -24,7 +24,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		printf("Up arrow\n");
 		mlx_data->mouse_pos.x_pos = x;
 		mlx_data->mouse_pos.y_pos = y;
-		mlx_data->img.zoom = mlx_data->img.zoom + 1;
+		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
 		// printf("zoom = %d\n", mlx_data->img.zoom);
 		if(mlx_data->mod == 1)
 			mandelbrot2(mlx_data, 50);
@@ -40,15 +40,20 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		printf("Down arrow\n");
 		mlx_data->mouse_pos.x_pos = x;
 		mlx_data->mouse_pos.y_pos = y;
-		if (mlx_data->img.zoom > 1)
+		mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
+		if(mlx_data->mod == 1)
+			mandelbrot2(mlx_data, 50);
+		else if (mlx_data->mod == 2)
+			julia(mlx_data, 50);
+		/*if (mlx_data->img.zoom > 1)
 		{
-			mlx_data->img.zoom = mlx_data->img.zoom - 1;
+			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
 			// printf("zoom = %d\n", mlx_data->img.zoom);
 			if(mlx_data->mod == 1)
 				mandelbrot2(mlx_data, 50);
 			else if (mlx_data->mod == 2)
 				julia(mlx_data, 50);
-		}
+		}*/
 	}
 
 	/* ------- Esc ------- */

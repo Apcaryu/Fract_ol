@@ -1,16 +1,22 @@
 #include "fractol.h"
 #include <stdio.h>
 
+t_cmplx	mouse_zoom(t_data mlx_data)
+{
+	int	window_x = WIN_X;
+	int	window_y = WIN_Y;
+}
+
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 {
 	char		*pos;
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	float	min_x = -2.1 / mlx_data->img.zoom;
-	float	max_x = 0.6 / mlx_data->img.zoom;
-	float	min_y = -1.2 / mlx_data->img.zoom;
-	float	max_y = 1.2 / mlx_data->img.zoom;
+	float	min_x = -2.1 * mlx_data->img.zoom;
+	float	max_x = 0.6 * mlx_data->img.zoom;
+	float	min_y = -1.2 * mlx_data->img.zoom;
+	float	max_y = 1.2 * mlx_data->img.zoom;
 		
 	int	image_x = WIN_X;
 	int image_y = WIN_Y;
@@ -23,7 +29,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	t_cmplx	c;
 	t_cmplx z;
 	int	i = 0;
-
+	iter = iter / mlx_data->img.zoom;
 	while (x < image_x)
 	{
 		y = 0;
@@ -60,10 +66,10 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	double	min_x = -2.1 / mlx_data->img.zoom;
-	double	max_x = 0.6 / mlx_data->img.zoom;
-	double	min_y = -1.2 / mlx_data->img.zoom;
-	double	max_y = 1.2 / mlx_data->img.zoom;
+	double	min_x = -2.1 * mlx_data->img.zoom;
+	double	max_x = 0.6 * mlx_data->img.zoom;
+	double	min_y = -1.2 * mlx_data->img.zoom;
+	double	max_y = 1.2 * mlx_data->img.zoom;
 		
 	int		image_x = WIN_X;
 	int		image_y = WIN_Y;
@@ -81,6 +87,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	int color_int;
 	c.rl = mlx_data->zc.c.rl;
 	c.im = mlx_data->zc.c.im;
+	iter = iter / mlx_data->img.zoom;
 	// printf("c_r = %f | c_i = %f", c.rl, c.im);
 	while (x < image_x)
 	{
