@@ -15,6 +15,10 @@ int	main(int argc, char *argv[])
 	// printf("%f | %f\n", atof(argv[2]), atof(argv[3]));
 	mlx_data.mouse_pos.x_pos = 0;
 	mlx_data.mouse_pos.y_pos = 0;
+	mlx_data.fractal.min_x = -5;//-2.1;
+	mlx_data.fractal.max_x = 5;//0.6;
+	mlx_data.fractal.min_y = -5;//-1.2;
+	mlx_data.fractal.max_y = 5;//1.2;
 	if (argc <= 1 || 4 < argc)
 	{
 		printf("C'est non\n");

@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/06 16:33:05 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/07 13:05:35 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,19 @@ typedef struct s_zc
 	t_cmplx	c;
 }	t_zc;
 
-typedef struct mouse_pos
+typedef struct s_mouse_pos
 {
 	int	x_pos;
 	int	y_pos;
 } t_mouse_pos;
+
+typedef struct s_fractal
+{
+	double	min_x;
+	double	max_x;
+	double	min_y;
+	double	max_y;
+} t_fractal;
 
 typedef struct s_data
 {
@@ -61,6 +69,7 @@ typedef struct s_data
 	t_img	img;
 	t_zc	zc;
 	t_mouse_pos	mouse_pos;
+	t_fractal fractal;
 }	t_data;
 
 /* -----------------------------
@@ -80,5 +89,6 @@ int	esc_key(int key, t_data *mlx_data);
 int	user_input(int key, int x, int y, t_data *mlx_data);
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data);
+void	mouse_zoom(t_data *mlx_data);
 
 #endif

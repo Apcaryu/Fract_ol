@@ -1,10 +1,47 @@
 #include "fractol.h"
 #include <stdio.h>
 
-t_cmplx	mouse_zoom(t_data mlx_data)
+void	mouse_zoom(t_data *mlx_data)
 {
 	int	window_x = WIN_X;
 	int	window_y = WIN_Y;
+
+	double tmp;
+
+	if (mlx_data->mouse_pos.x_pos < WIN_X / 2)
+	{
+		tmp = (100*mlx_data->mouse_pos.x_pos/(WIN_X / 2.0))/100.0;
+		tmp = 1 - tmp;
+		// tmp = mlx_data->fractal.min_x * tmp / mlx_data->img.zoom;
+		mlx_data->fractal.min_x = mlx_data->fractal.min_x - tmp;
+		mlx_data->fractal.max_x = mlx_data->fractal.max_x - tmp;
+		printf("tmp %f\n", tmp);
+	}
+	else if (mlx_data->mouse_pos.x_pos > WIN_X / 2)
+	{
+		tmp = mlx_data->mouse_pos.x_pos - WIN_X / 2;
+		tmp = (100*tmp/(WIN_X/2.0))/100.0;
+		// tmp = mlx_data->fractal.max_x * tmp / mlx_data->img.zoom;
+		mlx_data->fractal.min_x = mlx_data->fractal.min_x + tmp;
+		mlx_data->fractal.max_x = mlx_data->fractal.max_x + tmp;
+	}
+
+	if (mlx_data->mouse_pos.y_pos < WIN_Y / 2)
+	{
+		tmp = (100*mlx_data->mouse_pos.y_pos/(WIN_Y / 2.0))/100.0;
+		tmp = 1 - tmp;
+		// tmp = mlx_data->fractal.min_y * tmp / mlx_data->img.zoom;
+		mlx_data->fractal.min_y = mlx_data->fractal.min_y - tmp;
+		mlx_data->fractal.max_y = mlx_data->fractal.max_y - tmp;
+	}
+	else if (mlx_data->mouse_pos.y_pos > WIN_Y / 2)
+	{
+		tmp = mlx_data->mouse_pos.y_pos - WIN_Y / 2;
+		tmp = (100*tmp/(WIN_X/2.0))/100.0;
+		// tmp = mlx_data->fractal.max_y * tmp / mlx_data->img.zoom;
+		mlx_data->fractal.min_y = mlx_data->fractal.min_y + tmp;
+		mlx_data->fractal.max_y = mlx_data->fractal.max_y + tmp;
+	}
 }
 
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
@@ -13,10 +50,10 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	float	min_x = -2.1 * mlx_data->img.zoom;
-	float	max_x = 0.6 * mlx_data->img.zoom;
-	float	min_y = -1.2 * mlx_data->img.zoom;
-	float	max_y = 1.2 * mlx_data->img.zoom;
+	double	min_x = mlx_data->fractal.min_x * mlx_data->img.zoom;
+	double	max_x = mlx_data->fractal.max_x * mlx_data->img.zoom;
+	double	min_y = mlx_data->fractal.min_y * mlx_data->img.zoom;
+	double	max_y = mlx_data->fractal.max_y * mlx_data->img.zoom;
 		
 	int	image_x = WIN_X;
 	int image_y = WIN_Y;
@@ -66,10 +103,12 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	double	min_x = -2.1 * mlx_data->img.zoom;
-	double	max_x = 0.6 * mlx_data->img.zoom;
-	double	min_y = -1.2 * mlx_data->img.zoom;
-	double	max_y = 1.2 * mlx_data->img.zoom;
+	double	min_x = mlx_data->fractal.min_x / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_x = mlx_data->fractal.max_x / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	min_y = mlx_data->fractal.min_y / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_y = mlx_data->fractal.max_y / (mlx_data->img.zoom * mlx_data->img.zoom);
+
+	printf("min_x %f | max_x %f\n", mlx_data->fractal.min_x, mlx_data->fractal.max_x);
 		
 	int		image_x = WIN_X;
 	int		image_y = WIN_Y;
@@ -87,7 +126,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	int color_int;
 	c.rl = mlx_data->zc.c.rl;
 	c.im = mlx_data->zc.c.im;
-	iter = iter / mlx_data->img.zoom;
+	iter = iter * mlx_data->img.zoom;
 	// printf("c_r = %f | c_i = %f", c.rl, c.im);
 	while (x < image_x)
 	{
@@ -97,14 +136,14 @@ void	julia(t_data *mlx_data, unsigned int iter)
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
 			// c.rl = /*0.35*//*-0.63*//*0.35*/-0.76/*0.285*/;
 			// c.im = /*-0.36*//*-0.4*//*0.05*/0.12/*0.013*/;
-			z.rl = x/zoom_x+min_x/1.5;
+			z.rl = x/zoom_x+min_x;//1.5;
 			z.im = y/zoom_y+min_y;
 			i = 0;
 			
 			while(z.rl * z.rl + z.im * z.im < 4 && i < iter)
 			{
 				z = add_cmplx(multiply_cmplx(z, z), c);
-				// z = add_cmplx(power_cmplx(z, 3), c);
+				// z = add_cmplx(power_cmplx(z, 4), c);
 				i++;
 			}
 			if (i == iter)
