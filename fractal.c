@@ -5,10 +5,6 @@ void	mouse_zoom(t_data *mlx_data, int key)
 {
 	double tmp;
 
-	// mlx_data->fractal.min_x /= mlx_data->img.zoom;
-	// mlx_data->fractal.max_x /= mlx_data->img.zoom;
-	// mlx_data->fractal.min_y /= mlx_data->img.zoom;
-	// mlx_data->fractal.max_y /= mlx_data->img.zoom;
 	if (mlx_data->mouse_pos.x_pos < WIN_X / 2)
 	{
 		tmp = (100*mlx_data->mouse_pos.x_pos/(WIN_X / 2.0))/100.0;
@@ -92,10 +88,10 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	double	min_x = mlx_data->fractal.min_x ;// (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_x = mlx_data->fractal.max_x ;// (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	min_y = mlx_data->fractal.min_y ;// (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_y = mlx_data->fractal.max_y ;// (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	min_x = mlx_data->fractal.min_x / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_x = mlx_data->fractal.max_x / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	min_y = mlx_data->fractal.min_y / (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_y = mlx_data->fractal.max_y / (mlx_data->img.zoom * mlx_data->img.zoom);
 		
 	int	image_x = WIN_X;
 	int image_y = WIN_Y;
@@ -108,7 +104,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	t_cmplx	c;
 	t_cmplx z;
 	int	i = 0;
-	iter = iter * mlx_data->img.zoom * exp(mlx_data->img.zoom);
+	iter = iter * mlx_data->img.zoom;
 	while (x < image_x)
 	{
 		y = 0;
