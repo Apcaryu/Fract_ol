@@ -1,47 +1,89 @@
 #include "fractol.h"
 #include <stdio.h>
 
-void	mouse_zoom(t_data *mlx_data)
+void	mouse_zoom(t_data *mlx_data, int key)
 {
-	int	window_x = WIN_X;
-	int	window_y = WIN_Y;
-
 	double tmp;
 
+	// mlx_data->fractal.min_x /= mlx_data->img.zoom;
+	// mlx_data->fractal.max_x /= mlx_data->img.zoom;
+	// mlx_data->fractal.min_y /= mlx_data->img.zoom;
+	// mlx_data->fractal.max_y /= mlx_data->img.zoom;
 	if (mlx_data->mouse_pos.x_pos < WIN_X / 2)
 	{
 		tmp = (100*mlx_data->mouse_pos.x_pos/(WIN_X / 2.0))/100.0;
 		tmp = 1 - tmp;
-		// tmp = mlx_data->fractal.min_x * tmp / mlx_data->img.zoom;
-		mlx_data->fractal.min_x = mlx_data->fractal.min_x - tmp;
-		mlx_data->fractal.max_x = mlx_data->fractal.max_x - tmp;
-		printf("tmp %f\n", tmp);
+		tmp *= log(mlx_data->img.zoom);
+		// tmp = mlx_data->fractal.min_x * tmp;
+		if (key == 4)
+		{
+			mlx_data->fractal.min_x = mlx_data->fractal.min_x - tmp;
+			mlx_data->fractal.max_x = mlx_data->fractal.max_x - tmp;
+		}
+		else if (key == 5)
+		{
+			mlx_data->fractal.min_x = mlx_data->fractal.min_x + tmp;
+			mlx_data->fractal.max_x = mlx_data->fractal.max_x + tmp;
+		}
 	}
 	else if (mlx_data->mouse_pos.x_pos > WIN_X / 2)
 	{
 		tmp = mlx_data->mouse_pos.x_pos - WIN_X / 2;
 		tmp = (100*tmp/(WIN_X/2.0))/100.0;
-		// tmp = mlx_data->fractal.max_x * tmp / mlx_data->img.zoom;
-		mlx_data->fractal.min_x = mlx_data->fractal.min_x + tmp;
-		mlx_data->fractal.max_x = mlx_data->fractal.max_x + tmp;
+		tmp *= log(mlx_data->img.zoom);
+		// tmp = mlx_data->fractal.max_x * tmp;
+		if (key == 4)
+		{
+			mlx_data->fractal.min_x = mlx_data->fractal.min_x + tmp;
+			mlx_data->fractal.max_x = mlx_data->fractal.max_x + tmp;
+		}
+		else if (key == 5)
+		{
+			mlx_data->fractal.min_x = mlx_data->fractal.min_x - tmp;
+			mlx_data->fractal.max_x = mlx_data->fractal.max_x - tmp;
+		}
 	}
+	mlx_data->mouse_pos.x_pos = pow(tmp, 2);
 
 	if (mlx_data->mouse_pos.y_pos < WIN_Y / 2)
 	{
 		tmp = (100*mlx_data->mouse_pos.y_pos/(WIN_Y / 2.0))/100.0;
 		tmp = 1 - tmp;
-		// tmp = mlx_data->fractal.min_y * tmp / mlx_data->img.zoom;
-		mlx_data->fractal.min_y = mlx_data->fractal.min_y - tmp;
-		mlx_data->fractal.max_y = mlx_data->fractal.max_y - tmp;
+		tmp *= log(mlx_data->img.zoom);
+		// tmp = mlx_data->fractal.min_y * tmp;
+		if (key == 4)
+		{
+			mlx_data->fractal.min_y = mlx_data->fractal.min_y - tmp;
+			mlx_data->fractal.max_y = mlx_data->fractal.max_y - tmp;
+		}
+		else if (key == 5)
+		{
+			mlx_data->fractal.min_y = mlx_data->fractal.min_y + tmp;
+			mlx_data->fractal.max_y = mlx_data->fractal.max_y + tmp;
+		}
 	}
 	else if (mlx_data->mouse_pos.y_pos > WIN_Y / 2)
 	{
 		tmp = mlx_data->mouse_pos.y_pos - WIN_Y / 2;
 		tmp = (100*tmp/(WIN_X/2.0))/100.0;
-		// tmp = mlx_data->fractal.max_y * tmp / mlx_data->img.zoom;
-		mlx_data->fractal.min_y = mlx_data->fractal.min_y + tmp;
-		mlx_data->fractal.max_y = mlx_data->fractal.max_y + tmp;
+		tmp *= log(mlx_data->img.zoom);
+		// tmp = mlx_data->fractal.max_y * tmp;
+		if (key == 4)
+		{
+			mlx_data->fractal.min_y = mlx_data->fractal.min_y + tmp;
+			mlx_data->fractal.max_y = mlx_data->fractal.max_y + tmp;
+		}
+		else if (key == 5)
+		{
+			mlx_data->fractal.min_y = mlx_data->fractal.min_y - tmp;
+			mlx_data->fractal.max_y = mlx_data->fractal.max_y - tmp;
+		}
 	}
+/*
+	mlx_data->fractal.min_x *= mlx_data->img.zoom;
+	mlx_data->fractal.max_x *= mlx_data->img.zoom;
+	mlx_data->fractal.min_y *= mlx_data->img.zoom;
+	mlx_data->fractal.max_y *= mlx_data->img.zoom;*/
 }
 
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
@@ -50,10 +92,10 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	double	min_x = mlx_data->fractal.min_x * mlx_data->img.zoom;
-	double	max_x = mlx_data->fractal.max_x * mlx_data->img.zoom;
-	double	min_y = mlx_data->fractal.min_y * mlx_data->img.zoom;
-	double	max_y = mlx_data->fractal.max_y * mlx_data->img.zoom;
+	double	min_x = mlx_data->fractal.min_x ;// (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_x = mlx_data->fractal.max_x ;// (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	min_y = mlx_data->fractal.min_y ;// (mlx_data->img.zoom * mlx_data->img.zoom);
+	double	max_y = mlx_data->fractal.max_y ;// (mlx_data->img.zoom * mlx_data->img.zoom);
 		
 	int	image_x = WIN_X;
 	int image_y = WIN_Y;
@@ -66,7 +108,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	t_cmplx	c;
 	t_cmplx z;
 	int	i = 0;
-	iter = iter / mlx_data->img.zoom;
+	iter = iter * mlx_data->img.zoom * exp(mlx_data->img.zoom);
 	while (x < image_x)
 	{
 		y = 0;
@@ -109,7 +151,15 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	double	max_y = mlx_data->fractal.max_y / (mlx_data->img.zoom * mlx_data->img.zoom);
 
 	printf("min_x %f | max_x %f\n", mlx_data->fractal.min_x, mlx_data->fractal.max_x);
-		
+	printf("min_y %f | max_y %f\n", mlx_data->fractal.min_y, mlx_data->fractal.max_y);
+	// printf("min_x %f | max_x %f\n", min_x, max_x);
+	// printf("min_y %f | max_y %f\n", min_y, max_y);
+	printf("zoom = %f", mlx_data->img.zoom);
+	// mlx_data->fractal.min_x = min_x;
+	// mlx_data->fractal.max_x = max_x;
+	// mlx_data->fractal.min_y = min_y;
+	// mlx_data->fractal.max_y = max_y;
+
 	int		image_x = WIN_X;
 	int		image_y = WIN_Y;
 	double	zoom_x = image_x/(max_x - min_x);

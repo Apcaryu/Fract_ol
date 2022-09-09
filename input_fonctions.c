@@ -29,7 +29,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		mlx_data->fractal.max_x += .1;
 		mlx_data->fractal.min_y -= 0.2;
 		mlx_data->fractal.max_y += .2;*/
-		mouse_zoom(mlx_data);
+		mouse_zoom(mlx_data, key);
 		// printf("zoom = %d\n", mlx_data->img.zoom);
 		if(mlx_data->mod == 1)
 			mandelbrot2(mlx_data, 50);
@@ -45,7 +45,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		printf("Down arrow\n");
 		mlx_data->mouse_pos.x_pos = x;
 		mlx_data->mouse_pos.y_pos = y;
-		mouse_zoom(mlx_data);
+		mouse_zoom(mlx_data, key);
 		if (mlx_data->img.zoom > 0.2)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
 		if(mlx_data->mod == 1)
