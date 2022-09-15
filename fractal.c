@@ -1,6 +1,6 @@
 #include "fractol.h"
 #include <stdio.h>
-
+/*
 void	mouse_zoom(t_data *mlx_data, int key)
 {
 	double tmp;
@@ -39,7 +39,7 @@ void	mouse_zoom(t_data *mlx_data, int key)
 			mlx_data->fractal.max_x = mlx_data->fractal.max_x - tmp;
 		}
 	}
-	mlx_data->mouse_pos.x_pos = pow(tmp, 2);
+	// mlx_data->mouse_pos.x_pos = pow(tmp, 2);
 
 	if (mlx_data->mouse_pos.y_pos < WIN_Y / 2)
 	{
@@ -75,12 +75,12 @@ void	mouse_zoom(t_data *mlx_data, int key)
 			mlx_data->fractal.max_y = mlx_data->fractal.max_y - tmp;
 		}
 	}
-/*
+
 	mlx_data->fractal.min_x *= mlx_data->img.zoom;
 	mlx_data->fractal.max_x *= mlx_data->img.zoom;
 	mlx_data->fractal.min_y *= mlx_data->img.zoom;
-	mlx_data->fractal.max_y *= mlx_data->img.zoom;*/
-}
+	mlx_data->fractal.max_y *= mlx_data->img.zoom;
+}*/
 
 void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 {
@@ -223,6 +223,13 @@ int	color_change(t_data *mlx_data)
 	unsigned int	x;
 	unsigned int	y;
 	char			*pos;
+	long long int	test;
+
+	test = 0;
+	while (test < 53775807)
+	{
+		test++;
+	}
 
 	x = 0;
 	while (x < WIN_X)

@@ -34,7 +34,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		if(mlx_data->mod == 1)
 			mandelbrot2(mlx_data, 50);
 		else if (mlx_data->mod == 2)
-			julia(mlx_data, 50);
+			julia(mlx_data, 5000);
 		// mandelbrot2(mlx_data, 5000);
 		// julia(mlx_data, 5000);
 	}
@@ -51,7 +51,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		if(mlx_data->mod == 1)
 			mandelbrot2(mlx_data, 50);
 		else if (mlx_data->mod == 2)
-			julia(mlx_data, 50);
+			julia(mlx_data, 5000);
 		/*if (mlx_data->img.zoom > 1)
 		{
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
@@ -68,6 +68,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
     	mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
+		mlx_destroy_display(mlx_data->mlx);
 		mlx_loop_end(mlx_data->mlx);
 	}
 

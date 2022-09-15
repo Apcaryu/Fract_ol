@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/09 17:22:28 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/15 12:55:59 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 // -----------------------------------
+
+typedef enum e_bool
+{
+	false = 0,
+	true = 1
+}	t_bool;
 
 typedef struct s_img
 {
@@ -89,6 +95,6 @@ int	esc_key(int key, t_data *mlx_data);
 int	user_input(int key, int x, int y, t_data *mlx_data);
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data);
-void	mouse_zoom(t_data *mlx_data, int key);
+void	mouse_zoom(t_data *m_data, int key);
 
 #endif
