@@ -45,11 +45,8 @@ int	main(int argc, char *argv[])
 			mlx_loop(mlx_data.mlx);
 		}
 		printf("mod = %d", mlx_data.mod);
-	}/*
-	else if (argc == 3)
-	{
-		printf("Julia param custom\n");
-	}*/
+	}
+	
 	/* ---------- For test mlx ----------
 	mlx_data.mlx = mlx_init();
 	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");

@@ -18,13 +18,13 @@ int	esc_key(int key, t_data *mlx_data)
 int	user_input(int key, int x, int y, t_data *mlx_data)
 {
 	mlx_data->key = key;
+	mlx_data->mouse_pos.x_pos = x;
+	mlx_data->mouse_pos.y_pos = y;
 	printf("Mouse pos = %d | %d\n", x, y);
-	/* ------- Up Arrow ------- */
+	/* ------- Up Scrol ------- */
 	if (key==4/*65362*/)
 	{
-		printf("Up arrow\n");
-		mlx_data->mouse_pos.x_pos = x;
-		mlx_data->mouse_pos.y_pos = y;
+		printf("Up scrol\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
 		/*mlx_data->fractal.min_x -= 0.1;
 		mlx_data->fractal.max_x += .1;
@@ -40,12 +40,10 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		// julia(mlx_data, 5000);
 	}
 
-	/* ------- Down Arrow ------- */
+	/* ------- Down Scrol ------- */
 	else if (key==5/*65364*/)
 	{
-		printf("Down arrow\n");
-		mlx_data->mouse_pos.x_pos = x;
-		mlx_data->mouse_pos.y_pos = y;
+		printf("Down scrol\n");
 		mouse_zoom(mlx_data);
 		if (mlx_data->img.zoom > 0.2)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
