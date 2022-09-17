@@ -224,13 +224,13 @@ int	color_change(t_data *mlx_data)
 	unsigned int	y;
 	char			*pos;
 	long long int	test;
-
+	/*
 	test = 0;
 	while (test < 53775807)
 	{
 		test++;
 	}
-
+	*/
 	x = 0;
 	while (x < WIN_X)
 	{
