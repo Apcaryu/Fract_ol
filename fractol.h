@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/17 17:04:59 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:24:41 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,6 @@ int	esc_key(int key, t_data *mlx_data);
 int	user_input(int key, int x, int y, t_data *mlx_data);
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data);
-void	mouse_zoom(t_data *m_data, int key);
+void	mouse_zoom(t_data *m_data);
 
 #endif
