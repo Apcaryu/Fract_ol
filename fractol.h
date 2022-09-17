@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/15 12:55:59 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:04:59 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef enum e_bool
 	false = 0,
 	true = 1
 }	t_bool;
+
+typedef	struct s_min_max
+{
+	double	*min;
+	double	*max;
+}	t_min_max;
 
 typedef struct s_img
 {
@@ -72,6 +78,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*mlx_window;
 	int		mod;
+	int		key;
 	t_img	img;
 	t_zc	zc;
 	t_mouse_pos	mouse_pos;

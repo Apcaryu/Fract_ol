@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_zoom.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/17 17:08:57 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/17 17:09:00 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
+
+void	init_m_and_m(t_data *m_data, t_min_max *min_max, t_bool is_x)
+{
+	if (is_x)
+	{
+		min_max->min = &m_data->fractal.min_x;
+		min_max->max = &m_data->fractal.max_x;
+	}
+	else
+	{
+		min_max->min = &m_data->fractal.min_y;
+		min_max->max = &m_data->fractal.max_y;
+	}
+}
 
 double	tmp_calcul(t_data m_data, int pos, int win, t_bool is_min)
 {
@@ -32,21 +58,24 @@ void	as_tmp(double *min, double *max, double tmp, t_bool is_add)
 	}
 }
 
-void	z_dz(double *min, double *max, double tmp, int key, t_bool is_inf)
+void	z_dz(t_data *m_data, double tmp, t_bool is_inf, t_bool is_x)
 {
+	t_min_max	min_max;
+
+	init_m_and_m(m_data, &min_max, is_x);
 	if (is_inf)
 	{
-		if (key == 4)
-			as_tmp(min, max, tmp, false);
-		else if (key == 5)
-			as_tmp(min, max, tmp, true);
+		if (m_data->key == 4)
+			as_tmp(min_max.min, min_max.max, tmp, false);
+		else if (m_data->key == 5)
+			as_tmp(min_max.min, min_max.max, tmp, true);
 	}
-	else 
+	else
 	{
-		if (key == 4)
-			as_tmp(min, max, tmp, true);
-		else if (key == 5)
-			as_tmp(min, max, tmp, false);
+		if (m_data->key == 4)
+			as_tmp(min_max.min, min_max.max, tmp, true);
+		else if (m_data->key == 5)
+			as_tmp(min_max.min, min_max.max, tmp, false);
 	}
 }
 
@@ -57,21 +86,21 @@ void	mouse_zoom(t_data *m_data, int key)
 	if (m_data->mouse_pos.x_pos < WIN_X / 2)
 	{
 		tmp = tmp_calcul(*m_data, m_data->mouse_pos.x_pos, WIN_X, true);
-		z_dz(&m_data->fractal.min_x, &m_data->fractal.max_x, tmp, key, true);
+		z_dz(m_data, tmp, true, true);
 	}
 	else if (m_data->mouse_pos.x_pos > WIN_X / 2)
 	{
 		tmp = tmp_calcul(*m_data, m_data->mouse_pos.x_pos, WIN_X, false);
-		z_dz(&m_data->fractal.min_x, &m_data->fractal.max_x, tmp, key, false);
+		z_dz(m_data, tmp, false, true);
 	}
 	if (m_data->mouse_pos.y_pos < WIN_Y / 2)
 	{
 		tmp = tmp_calcul(*m_data, m_data->mouse_pos.y_pos, WIN_Y, true);
-		z_dz(&m_data->fractal.min_y, &m_data->fractal.max_y, tmp, key, true);
+		z_dz(m_data, tmp, true, false);
 	}
 	else if (m_data->mouse_pos.y_pos > WIN_Y / 2)
 	{
 		tmp = tmp_calcul(*m_data, m_data->mouse_pos.y_pos, WIN_Y, false);
-		z_dz(&m_data->fractal.min_y, &m_data->fractal.max_y, tmp, key, false);
+		z_dz(m_data, tmp, false, false);
 	}
 }

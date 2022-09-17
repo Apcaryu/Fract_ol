@@ -17,6 +17,7 @@ int	esc_key(int key, t_data *mlx_data)
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
 {
+	mlx_data->key = key;
 	printf("Mouse pos = %d | %d\n", x, y);
 	/* ------- Up Arrow ------- */
 	if (key==4/*65362*/)
