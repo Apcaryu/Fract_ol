@@ -5,14 +5,18 @@ int input_test(int key)
 	printf("key = %d\n", key);
 }
 
-int	esc_key(int key, t_data *mlx_data)
+int	key(int key, t_data *mlx_data)
 {
+	printf("key = %d\n", key);
 	if (key==0xFF1B)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
     	mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
 		mlx_loop_end(mlx_data->mlx);
 	}
+	if (key == SPACE_KEY)
+		mlx_data->img.is_animated = !mlx_data->img.is_animated;
+	
 }
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
@@ -20,6 +24,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 	mlx_data->key = key;
 	mlx_data->mouse_pos.x_pos = x;
 	mlx_data->mouse_pos.y_pos = y;
+	printf("key = %d\n", key);
 	printf("Mouse pos = %d | %d\n", x, y);
 	/* ------- Up Scrol ------- */
 	if (key==4/*65362*/)
@@ -74,6 +79,6 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 	/* ------ Left click ------*/
 	else if (key==1)
 	{
-		color_change(mlx_data);
+		mlx_data->img.is_animated = !mlx_data->img.is_animated;
 	}
 }

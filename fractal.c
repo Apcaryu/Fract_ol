@@ -150,6 +150,8 @@ int	color_change(t_data *mlx_data)
 		test++;
 	}
 	*/
+	if (!mlx_data->img.is_animated)
+		return(0);
 	x = 0;
 	while (x < WIN_X)
 	{

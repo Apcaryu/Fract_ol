@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/17 17:24:41 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/17 18:11:50 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
+# define SPACE_KEY 32
 # define COLOR_MIN 0xFEFEFE
 # define DE_COLOR 0x010101
 # include "libft/libft.h"
@@ -51,6 +52,7 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 	double		zoom;
+	t_bool		is_animated;
 }	t_img;
 
 typedef struct s_zc
@@ -98,7 +100,7 @@ unsigned int	choose_color(char *pos, int i, int iter);
 	fonction pour les user input
    ----------------------------- */
 int input_test(int key);
-int	esc_key(int key, t_data *mlx_data);
+int	key(int key, t_data *mlx_data);
 int	user_input(int key, int x, int y, t_data *mlx_data);
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data);
