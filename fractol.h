@@ -99,7 +99,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter);
 void	julia(t_data *mlx_data, unsigned int iter);
 int		color_change(t_data *mlx_data);
 unsigned int	choose_color(char *pos, int i, int iter);
-void	init_fractal(t_data *m_data);
+t_fractal	init_fractal(t_data *m_data);
 
 /* -----------------------------
 	fonction pour les user input

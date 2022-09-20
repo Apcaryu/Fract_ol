@@ -1,15 +1,18 @@
 #include "fractol.h"
 
-void	init_fractal(t_data *m_data)
+t_fractal	init_fractal(t_data *m_data)
 {
-	m_data->fractal.min_x /= (m_data->img.zoom * m_data->img.zoom);
-	m_data->fractal.max_x /= (m_data->img.zoom * m_data->img.zoom);
-	m_data->fractal.min_y /= (m_data->img.zoom * m_data->img.zoom);
-	m_data->fractal.max_y /= (m_data->img.zoom * m_data->img.zoom);
+	t_fractal fractal;
+
+	fractal.min_x = m_data->fractal.min_x / (m_data->img.zoom * m_data->img.zoom);
+	fractal.max_x = m_data->fractal.max_x / (m_data->img.zoom * m_data->img.zoom);
+	fractal.min_y = m_data->fractal.min_y / (m_data->img.zoom * m_data->img.zoom);
+	fractal.max_y = m_data->fractal.max_y / (m_data->img.zoom * m_data->img.zoom);
 	m_data->fractal.image_x = WIN_X;
 	m_data->fractal.image_y = WIN_Y;
 	m_data->fractal.zoom_x = m_data->fractal.image_x / \
-	(m_data->fractal.max_x - m_data->fractal.min_x);
+	(fractal.max_x - fractal.min_x);
 	m_data->fractal.zoom_y = m_data->fractal.image_y / \
-	(m_data->fractal.max_y - m_data->fractal.min_y);
+	(fractal.max_y - fractal.min_y);
+	return(fractal);
 }

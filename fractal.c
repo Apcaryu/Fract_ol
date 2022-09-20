@@ -6,24 +6,14 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	char		*pos;
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
-/*
-	double	min_x = mlx_data->fractal.min_x / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_x = mlx_data->fractal.max_x / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	min_y = mlx_data->fractal.min_y / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_y = mlx_data->fractal.max_y / (mlx_data->img.zoom * mlx_data->img.zoom);
-		
-	int	image_x = WIN_X;
-	int image_y = WIN_Y;
-	double zoom_x = image_x/(max_x - min_x);
-	double zoom_y = image_y/(max_y - min_y);*/
 
 	unsigned int	x = 0;
 	unsigned int	y;
-
-	init_fractal(mlx_data);
+	t_fractal fractal;
+	fractal = init_fractal(mlx_data);
 	t_cmplx	c;
 	t_cmplx z;
-	int	i = 0;
+	int	i;
 	iter = iter * mlx_data->img.zoom;
 	while (x < mlx_data->fractal.image_x)
 	{
@@ -31,8 +21,8 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 		while (y < mlx_data->fractal.image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			c.rl = x/mlx_data->fractal.zoom_x+mlx_data->fractal.min_x;
-			c.im = y/mlx_data->fractal.zoom_y+mlx_data->fractal.min_y;
+			c.rl = x/mlx_data->fractal.zoom_x+fractal.min_x;
+			c.im = y/mlx_data->fractal.zoom_y+fractal.min_y;
 			z.rl = 0;
 			z.im = 0;
 			i = 0;
@@ -61,54 +51,38 @@ void	julia(t_data *mlx_data, unsigned int iter)
 	unsigned int white = 0x00FFFFFF;
 	unsigned int rose = 0x00FF00FF; /*0x004600FA;*/ /*0x00202020;*/
 
-	double	min_x = mlx_data->fractal.min_x / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_x = mlx_data->fractal.max_x / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	min_y = mlx_data->fractal.min_y / (mlx_data->img.zoom * mlx_data->img.zoom);
-	double	max_y = mlx_data->fractal.max_y / (mlx_data->img.zoom * mlx_data->img.zoom);
-
 	printf("min_x %f | max_x %f\n", mlx_data->fractal.min_x, mlx_data->fractal.max_x);
 	printf("min_y %f | max_y %f\n", mlx_data->fractal.min_y, mlx_data->fractal.max_y);
 	// printf("min_x %f | max_x %f\n", min_x, max_x);
 	// printf("min_y %f | max_y %f\n", min_y, max_y);
 	printf("zoom = %f", mlx_data->img.zoom);
-	// mlx_data->fractal.min_x = min_x;
-	// mlx_data->fractal.max_x = max_x;
-	// mlx_data->fractal.min_y = min_y;
-	// mlx_data->fractal.max_y = max_y;
-
-	int		image_x = WIN_X;
-	int		image_y = WIN_Y;
-	double	zoom_x = image_x/(max_x - min_x);
-	double	zoom_y = image_y/(max_y - min_y);
 
 	unsigned int	x = 0;
 	unsigned int	y = 0;
 
-	t_cmplx	c;
-	t_cmplx z;
-	int	i = 0;
+	t_fractal fractal;
+	fractal = init_fractal(mlx_data);
+	int	i;
 
 	t_rgb rgb;
 	int color_int;
-	c.rl = mlx_data->zc.c.rl;
-	c.im = mlx_data->zc.c.im;
 	iter = iter * mlx_data->img.zoom;
-	// printf("c_r = %f | c_i = %f", c.rl, c.im);
-	while (x < image_x)
+//	printf("c_r = %f | c_i = %f", mlx_data->zc.c.rl, mlx_data->zc.c.im);
+	while (x < mlx_data->fractal.image_x)
 	{
 		y = 0;
-		while (y < image_y)
+		while (y < mlx_data->fractal.image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
 			// c.rl = /*0.35*//*-0.63*//*0.35*/-0.76/*0.285*/;
 			// c.im = /*-0.36*//*-0.4*//*0.05*/0.12/*0.013*/;
-			z.rl = x/zoom_x+min_x;//1.5;
-			z.im = y/zoom_y+min_y;
+			mlx_data->zc.z.rl = x/mlx_data->fractal.zoom_x+fractal.min_x;//1.5;
+			mlx_data->zc.z.im = y/mlx_data->fractal.zoom_y+fractal.min_y;
 			i = 0;
 			
-			while(z.rl * z.rl + z.im * z.im < 4 && i < iter)
+			while(mlx_data->zc.z.rl * mlx_data->zc.z.rl + mlx_data->zc.z.im * mlx_data->zc.z.im < 4 && i < iter)
 			{
-				z = add_cmplx(multiply_cmplx(z, z), c);
+				mlx_data->zc.z = add_cmplx(power_cmplx(mlx_data->zc.z, 2), mlx_data->zc.c);
 				// z = add_cmplx(power_cmplx(z, 4), c);
 				i++;
 			}
@@ -119,7 +93,7 @@ void	julia(t_data *mlx_data, unsigned int iter)
 				rgb.g = rgb.g * (100*x/WIN_X) / (double)(100*y/WIN_Y);
 				rgb.b = rgb.b * (100*x/WIN_X) / (double)(100*y/WIN_Y);
 				color_int = rgb_to_int(rgb);
-				*(unsigned int *)pos = /*color_int*/white / ((z.rl * 10000) / (z.im * 10000));
+				*(unsigned int *)pos = /*color_int*/white / ((mlx_data->zc.z.rl * 10000) / (mlx_data->zc.z.im * 10000));
 				// *(unsigned int *)pos = white / (z.rl * 10000) / (z.im * 10000 + 1);
 				// printf("int: %d | hex: %X", *(unsigned int *)pos, *(unsigned int *)pos);
 			}
