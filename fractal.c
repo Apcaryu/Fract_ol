@@ -11,8 +11,6 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 	unsigned int	y;
 	t_fractal fractal;
 	fractal = init_fractal(mlx_data);
-	t_cmplx	c;
-	t_cmplx z;
 	int	i;
 	iter = iter * mlx_data->img.zoom;
 	while (x < mlx_data->fractal.image_x)
@@ -21,20 +19,20 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 		while (y < mlx_data->fractal.image_y)
 		{
 			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			c.rl = x/mlx_data->fractal.zoom_x+fractal.min_x;
-			c.im = y/mlx_data->fractal.zoom_y+fractal.min_y;
-			z.rl = 0;
-			z.im = 0;
+			mlx_data->zc.c.rl = x/mlx_data->fractal.zoom_x+fractal.min_x;
+			mlx_data->zc.c.im = y/mlx_data->fractal.zoom_y+fractal.min_y;
+			mlx_data->zc.z.rl = 0;
+			mlx_data->zc.z.im = 0;
 			i = 0;
 			
-			while(z.rl * z.rl + z.im * z.im < 4 && i < iter)
+			while(pow(mlx_data->zc.z.rl, 2) + pow(mlx_data->zc.z.im, 2) < 4 && i < iter)
 			{
-				z = add_cmplx(multiply_cmplx(z, z), c);
+				mlx_data->zc.z = add_cmplx(power_cmplx(mlx_data->zc.z, 2), mlx_data->zc.c);
 				// z = add_cmplx(power_cmplx(z, 7), c);
 				i++;
 			}
 			if (i == iter)
-				*(unsigned int *)pos = white/* / (z.rl *10000) / (z.im * 10000)*/ / ((z.rl * 10000) / (z.im * 10000));
+				*(unsigned int *)pos = white/* / (z.rl *10000) / (z.im * 10000)*/ / ((mlx_data->zc.z.rl * 10000) / (mlx_data->zc.z.im * 10000));
 			else
 				*(unsigned int *)pos = 0x00000000 + i  * 0x010101;
 				// *(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
