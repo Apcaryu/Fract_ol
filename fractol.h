@@ -14,13 +14,13 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
-# define SPACE_KEY 32
 # define COLOR_MIN 0xFEFEFE
 # define DE_COLOR 0x010101
 # include "libft/libft.h"
 # include "color.h"
 # include "complex.h"
 # include "error.h"
+# include "input_macro.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
