@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/17 18:11:50 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:43:53 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ typedef struct s_fractal
 	double	max_x;
 	double	min_y;
 	double	max_y;
+	int		image_x;
+	int		image_y;
+	double	zoom_x;
+	double	zoom_y;
 } t_fractal;
 
 typedef struct s_data
@@ -95,6 +99,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter);
 void	julia(t_data *mlx_data, unsigned int iter);
 int		color_change(t_data *mlx_data);
 unsigned int	choose_color(char *pos, int i, int iter);
+void	init_fractal(t_data *m_data);
 
 /* -----------------------------
 	fonction pour les user input
