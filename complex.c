@@ -42,7 +42,7 @@ t_cmplx power_cmplx(t_cmplx nb, unsigned int power)
 	t_cmplx			tmp;
 	t_cmplx			nb_out;
 
-	cntr = 0;
+	cntr = 1;
 	tmp.rl = nb.rl;
 	tmp.im = nb.im;
 	while (cntr < power)
