@@ -38,7 +38,7 @@ typedef enum e_bool
 	true = 1
 }	t_bool;
 
-typedef	struct s_min_max
+typedef struct s_min_max
 {
 	double	*min;
 	double	*max;
@@ -51,8 +51,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
-	double		zoom;
-	t_bool		is_animated;
+	double	zoom;
+	t_bool	is_animated;
 }	t_img;
 
 typedef struct s_zc
@@ -65,7 +65,7 @@ typedef struct s_mouse_pos
 {
 	int	x_pos;
 	int	y_pos;
-} t_mouse_pos;
+}	t_mouse_pos;
 
 typedef struct s_fractal
 {
@@ -77,38 +77,39 @@ typedef struct s_fractal
 	int		image_y;
 	double	zoom_x;
 	double	zoom_y;
-} t_fractal;
+}	t_fractal;
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*mlx_window;
-	int		mod;
-	int		key;
-	t_img	img;
-	t_zc	zc;
+	void		*mlx;
+	void		*mlx_window;
+	int			mod;
+	int			key;
+	t_img		img;
+	t_zc		zc;
 	t_mouse_pos	mouse_pos;
-	t_fractal fractal;
+	t_fractal	fractal;
 }	t_data;
 
 /* -----------------------------
 	fonction pour les fractal 
    ----------------------------- */
-void	mandelbrot(void *mlx, void *mlx_win, void *mlx_image, unsigned int iter);
-void	mandelbrot2(t_data *mlx_data, unsigned int iter);
-void	julia(t_data *mlx_data, unsigned int iter);
-int		color_change(t_data *mlx_data);
+void			mandelbrot(void *mlx, void *mlx_win, \
+void *mlx_image, unsigned int iter);
+void			mandelbrot2(t_data *mlx_data, unsigned int iter);
+void			julia(t_data *mlx_data, unsigned int iter);
+int				color_change(t_data *mlx_data);
 unsigned int	choose_color(char *pos, int i, int iter);
-t_fractal	init_fractal(t_data *m_data);
+t_fractal		init_fractal(t_data *m_data);
 
 /* -----------------------------
 	fonction pour les user input
    ----------------------------- */
-int input_test(int key);
-int	key(int key, t_data *mlx_data);
-int	user_input(int key, int x, int y, t_data *mlx_data);
+int				input_test(int key);
+int				key(int key, t_data *mlx_data);
+int				user_input(int key, int x, int y, t_data *mlx_data);
 
-void	fractal_type(int argc, char *argv[], t_data *mlx_data);
-void	mouse_zoom(t_data *m_data);
+void			fractal_type(int argc, char *argv[], t_data *mlx_data);
+void			mouse_zoom(t_data *m_data);
 
 #endif
