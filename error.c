@@ -1,38 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/20 18:14:52 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/20 18:14:54 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 char	check_args(char *argv[])
 {
-	int	cmp_res;
+	int		cmp_res;
 	char	mod;
-	int	size_arg;
+	int		size_arg;
 
 	size_arg = ft_strlen(argv[1]);
 	cmp_res = ft_strncmp(argv[1], "mandelbrot", size_arg);
 	if (!cmp_res)
-	{
 		mod = 1;
-	}
 	else if (!ft_strncmp(argv[1], "julia", size_arg))
-	{
 		mod = 2;
-	}
 	else
-	{
 		mod = 0;
-	}
-	return(mod);
+	return (mod);
 }
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data)
 {
-	if(!ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])))
-	{
+	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])))
 		mlx_data->mod = 1;
-	}
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen(argv[1])))
 	{
 		mlx_data->mod = 2;
-
 		if (argc == 3)
 		{
 			mlx_data->zc.c.rl = atof(argv[2]);
