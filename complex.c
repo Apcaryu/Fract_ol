@@ -47,8 +47,7 @@ t_cmplx power_cmplx(t_cmplx nb, unsigned int power)
 	tmp.im = nb.im;
 	while (cntr < power)
 	{
-		nb_out.rl = nb.rl * tmp.rl - nb.im * tmp.im;
-		nb_out.im = nb.rl * tmp.im + nb.im * tmp.rl;
+		nb_out = multiply_cmplx(nb, tmp);
 		tmp.rl = nb_out.rl;
 		tmp.im = nb_out.im;
 		cntr++;
