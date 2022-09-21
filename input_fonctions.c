@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_fonctions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/21 14:54:10 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/21 14:54:11 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	input_test(int key)
@@ -8,7 +20,7 @@ int	input_test(int key)
 int	key(int key, t_data *mlx_data)
 {
 	printf("key = %d\n", key);
-	if (key == 0xFF1B)
+	if (key == ESCAPE_KEY)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
 		mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
@@ -23,10 +35,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 	mlx_data->key = key;
 	mlx_data->mouse_pos.x_pos = x;
 	mlx_data->mouse_pos.y_pos = y;
-	printf("key = %d\n", key);
-	printf("Mouse pos = %d | %d\n", x, y);
-	/* ------- Up Scrol ------- */
-	if (key == 4)
+	if (key == SCROLL_UP)
 	{
 		printf("Up scrol\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
@@ -36,8 +45,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		else if (mlx_data->mod == 2)
 			julia(mlx_data, 5000);
 	}
-	/* ------- Down Scrol ------- */
-	else if (key == 5)
+	else if (key == SCROLL_DOWN)
 	{
 		printf("Down scrol\n");
 		mouse_zoom(mlx_data);
@@ -48,15 +56,4 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		else if (mlx_data->mod == 2)
 			julia(mlx_data, 5000);
 	}
-	/* ------- Esc ------- */
-	else if (key == 0xFF1B)
-	{
-		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
-		mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
-		mlx_destroy_display(mlx_data->mlx);
-		mlx_loop_end(mlx_data->mlx);
-	}
-	/* ------ Left click ------*/
-	else if (key == 1)
-		mlx_data->img.is_animated = !mlx_data->img.is_animated;
 }
