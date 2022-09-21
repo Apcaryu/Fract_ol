@@ -55,6 +55,12 @@ typedef struct s_img
 	t_bool	is_animated;
 }	t_img;
 
+typedef struct s_xy
+{
+	unsigned int x;
+	unsigned int y;
+}	t_xy;
+
 typedef struct s_zc
 {
 	t_cmplx	z;
@@ -101,6 +107,7 @@ void			julia(t_data *mlx_data, unsigned int iter);
 int				color_change(t_data *mlx_data);
 unsigned int	choose_color(char *pos, int i, int iter);
 t_fractal		init_fractal(t_data *m_data);
+void			init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
 
 /* -----------------------------
 	fonction pour les user input

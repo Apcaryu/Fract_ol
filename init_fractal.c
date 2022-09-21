@@ -32,3 +32,19 @@ t_fractal	init_fractal(t_data *m_data)
 	(fractal.max_y - fractal.min_y);
 	return (fractal);
 }
+
+void	init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal)
+{
+	if (m_data->mod == 1)
+	{
+		m_data->zc.z.rl = 0;
+		m_data->zc.z.im = 0;
+		m_data->zc.c.rl = pos_xy.x / m_data->fractal.zoom_x + fractal.min_x;
+		m_data->zc.c.im = pos_xy.y / m_data->fractal.zoom_y + fractal.min_y;
+	}
+	else if (m_data->mod == 2)
+	{
+		m_data->zc.z.rl = pos_xy.x / m_data->fractal.zoom_x + fractal.min_x;
+		m_data->zc.z.im = pos_xy.y / m_data->fractal.zoom_y + fractal.min_y;
+	}
+}

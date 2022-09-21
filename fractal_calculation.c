@@ -1,19 +1,36 @@
 #include "fractol.h"
 
-void	calculate_fractal(t_data *m_data, unsigned int iter, t_bool mod)
+unsigned int is_in(t_data *m_data, unsigned int iter)
 {
-	unsigned int	x;
-	unsigned int	y;
+	unsigned int i;
 
-	x = 0;
-	while (x < m_data->fractal.zoom_x)
+	while (pow(m_data->zc.z.rl, 2) + pow(m_data->zc.z.im, 2) < 4 && i < iter)
 	{
-		y = 0;
-		while (y < m_data->fractal.zoom_y)
-		{
+		m_data->zc.z = add_cmplx(power_cmplx(m_data->zc.z, 2), m_data->zc.c);
+		i++;
+	}
+	return (i);
+}
 
-			y++;
+void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal, t_bool mod)
+{
+	t_xy	pos_xy;
+	unsigned int i;
+
+	pos_xy.x = 0;
+	while (pos_xy.x < m_data->fractal.zoom_x)
+	{
+		pos_xy.y = 0;
+		while (pos_xy.y < m_data->fractal.zoom_y)
+		{
+			init_zc(m_data, pos_xy, fractal);
+			i = is_in(m_data, iter);
+			if (i == iter)
+				printf("is_in");
+			else
+				printf("is_out");
+			pos_xy.y++;
 		}
-		x++;
+		pos_xy.x++;
 	}
 }
