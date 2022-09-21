@@ -109,6 +109,7 @@ unsigned int	choose_color(char *pos, int i, int iter);
 t_fractal		init_fractal(t_data *m_data);
 void			init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
 void			is_in_fractal(t_data m_data, char *pos);
+void			is_out_fractal(t_data m_data, char *pos, unsigned int i);
 
 /* -----------------------------
 	fonction pour les user input

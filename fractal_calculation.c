@@ -30,7 +30,7 @@ void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal, t_b
 			if (i == iter)
 				is_in_fractal(*m_data, pos);
 			else
-				printf("is_out");
+				is_out_fractal(*m_data, pos, i);
 			pos_xy.y++;
 		}
 		pos_xy.x++;
