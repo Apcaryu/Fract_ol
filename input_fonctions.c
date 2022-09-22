@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:54:10 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/21 14:54:11 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/22 13:07:14 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	key(int key, t_data *mlx_data)
 	if (key == ESCAPE_KEY)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
+		mlx_destroy_display(mlx_data->mlx);
 		mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
 		mlx_loop_end(mlx_data->mlx);
+		exit(EXIT_SUCCESS);
 	}
 	if (key == SPACE_KEY)
 		mlx_data->img.is_animated = !mlx_data->img.is_animated;

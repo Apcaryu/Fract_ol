@@ -12,7 +12,7 @@ unsigned int is_in(t_data *m_data, unsigned int iter)
 	return (i);
 }
 
-void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal, t_bool mod)
+void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal)
 {
 	char	*pos;
 	t_xy	pos_xy;
@@ -27,6 +27,7 @@ void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal, t_b
 			pos = m_data->img.addr + (pos_xy.y * m_data->img.line_len + pos_xy.x * (m_data->img.bpp/8));
 			init_zc(m_data, pos_xy, fractal);
 			i = is_in(m_data, iter);
+			printf("i = %d\n", i);
 			if (i == iter)
 				is_in_fractal(*m_data, pos);
 			else
@@ -36,4 +37,13 @@ void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal, t_b
 		pos_xy.x++;
 	}
 	mlx_put_image_to_window(m_data->mlx, m_data->mlx_window, m_data->img.mlx_img, 0, 0);
+}
+
+void	fractal_run(t_data *m_data, unsigned int iter)
+{
+	t_fractal fractal;
+
+	fractal = init_fractal(m_data);
+	iter *= m_data->img.zoom;
+	calculate_fractal(m_data, iter, fractal);
 }
