@@ -4,17 +4,6 @@ int	main(int argc, char *argv[])
 {
 	t_data	mlx_data;
 
-	mlx_data.mlx = mlx_init();
-	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");
-	mlx_data.img.mlx_img = mlx_new_image(mlx_data.mlx, WIN_X, WIN_Y);
-	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
-	mlx_data.img.zoom = 1;
-	mlx_data.mouse_pos.x_pos = 0;
-	mlx_data.mouse_pos.y_pos = 0;
-	mlx_data.fractal.min_x = -3;
-	mlx_data.fractal.max_x = 3;
-	mlx_data.fractal.min_y = -3;
-	mlx_data.fractal.max_y = 3;
 	if (argc <= 1 || 4 < argc)
 	{
 		printf("C'est non\n");
@@ -22,6 +11,7 @@ int	main(int argc, char *argv[])
 	else if (2 <= argc && argc <= 4)
 	{
 		printf("LET'S GOOOOOOOO\n");
+		base_init(&mlx_data);
 		fractal_type(argc, argv, &mlx_data);
 		fractal_run(&mlx_data, 50);
 		mlx_key_hook(mlx_data.mlx_window, key, &mlx_data);
