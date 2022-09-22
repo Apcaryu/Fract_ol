@@ -23,24 +23,11 @@ int	main(int argc, char *argv[])
 	{
 		printf("LET'S GOOOOOOOO\n");
 		fractal_type(argc, argv, &mlx_data);
-		if (mlx_data.mod == 1)
-		{
-			fractal_run(&mlx_data, 50);
-//			 mandelbrot2(&mlx_data, 50);
-			mlx_key_hook(mlx_data.mlx_window, key, &mlx_data);
-			mlx_mouse_hook(mlx_data.mlx_window, user_input, &mlx_data);
-			mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);
-			mlx_loop(mlx_data.mlx);
-		}
-		else if (mlx_data.mod == 2 || mlx_data.mod == 3)
-		{
-			fractal_run(&mlx_data, 5000);
-			julia(&mlx_data, 5000);
-			mlx_key_hook(mlx_data.mlx_window, key, &mlx_data);
-			mlx_mouse_hook(mlx_data.mlx_window, user_input, &mlx_data);
-			mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);
-			mlx_loop(mlx_data.mlx);
-		}
+		fractal_run(&mlx_data, 50);
+		mlx_key_hook(mlx_data.mlx_window, key, &mlx_data);
+		mlx_mouse_hook(mlx_data.mlx_window, user_input, &mlx_data);
+		mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);
+		mlx_loop(mlx_data.mlx);
 		printf("mod = %d", mlx_data.mod);
 	}
 }
