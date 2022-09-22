@@ -35,7 +35,7 @@ void	mandelbrot2(t_data *mlx_data, unsigned int iter)
 				*(unsigned int *)pos = white/* / (z.rl *10000) / (z.im * 10000)*/ / ((mlx_data->zc.z.rl * 10000) / (mlx_data->zc.z.im * 10000));
 			else
 				*(unsigned int *)pos = 0x00000000 + i  * 0x010101;
-				// *(unsigned int *)pos = rose/*/i;*/ * (100 * i/iter) * (100 * x/ image_x);
+				// *(unsigned int *)pos = rose/*i;*/ * (100 * i/iter) * (100 * x/ image_x);
 			y++;
 		}
 		x++;
