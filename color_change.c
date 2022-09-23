@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_change.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 13:15:31 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/23 13:15:34 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	select_change_color(t_data *m_data, t_bool is_right)
@@ -18,108 +30,78 @@ void	select_change_color(t_data *m_data, t_bool is_right)
 	}
 }
 
-int	flash(t_data *mlx_data)
+void	flash(t_data *mlx_data, t_xy pos_xy)
 {
-	unsigned int	x;
-	unsigned int	y;
 	char			*pos;
 
-	x = 0;
-	while (x < WIN_X)
-	{
-		y = 0;
-		while (y < WIN_Y)
-		{
-			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			if (*(unsigned int *)pos <= 0x0)
-				*(unsigned int *)pos = COLOR_MIN;
-			else
-				*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
-	return(0);
+	pos = mlx_data->img.addr + (pos_xy.y * mlx_data->img.line_len + \
+	pos_xy.x * (mlx_data->img.bpp / 8));
+	if (*(unsigned int *)pos <= 0x0)
+		*(unsigned int *)pos = COLOR_MIN;
+	else
+		*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
 }
 
-int	galaxy(t_data *mlx_data)
+void	galaxy(t_data *mlx_data, t_xy pos_xy)
 {
-	unsigned int	x;
-	unsigned int	y;
 	char			*pos;
 
-	x = 0;
-	while (x < WIN_X)
-	{
-		y = 0;
-		while (y < WIN_Y)
-		{
-			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			if (*(unsigned int *)pos == 0xFFFFFF)
-			{
-				*(unsigned int *)pos = rand();
-			}
-			else if (*(unsigned int *)pos <= 0x0)
-			{
-				*(unsigned int *)pos = 0x010101;
-			}
-			else
-				*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
-	return(0);
+	pos = mlx_data->img.addr + (pos_xy.y * mlx_data->img.line_len + \
+	pos_xy.x * (mlx_data->img.bpp / 8));
+	if (*(unsigned int *)pos == 0xFFFFFF)
+		*(unsigned int *)pos = rand();
+	else if (*(unsigned int *)pos <= 0x0)
+		*(unsigned int *)pos = 0x010101;
+	else
+		*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
 }
 
-int	hsv_cycle(t_data *mlx_data)
+void	hsv_cycle(t_data *mlx_data, t_xy pos_xy)
 {
-	unsigned int	x;
-	unsigned int	y;
 	char			*pos;
 	t_rgb			rgb;
 	t_hsv			hsv;
 
-	x = 0;
-	while (x < WIN_X)
+	pos = mlx_data->img.addr + (pos_xy.y * mlx_data->img.line_len + \
+	pos_xy.x * (mlx_data->img.bpp / 8));
+	rgb = int_to_rgb(*(unsigned int *)pos);
+	hsv = rgb_to_hsv(rgb);
+	if (hsv.h >= 360)
+		hsv.h = 0;
+	else
 	{
-		y = 0;
-		while (y < WIN_Y)
-		{
-			pos = mlx_data->img.addr + (y * mlx_data->img.line_len + x * (mlx_data->img.bpp/8));
-			rgb = int_to_rgb(*(unsigned int *)pos);
-			hsv = rgb_to_hsv(rgb);
-			if (hsv.h >= 360)
-			{
-				hsv.h = 0;
-			}
-			else
-			{
-				hsv.h = hsv.h + 2;
-				if (hsv.h >= 360)
-					hsv.h = 0;
-			}
-			rgb = hsv_to_rgb(hsv);
-			*(unsigned int *)pos = rgb_to_int(rgb);
-			y++;
-		}
-		x++;
+		hsv.h = hsv.h + 2;
+		if (hsv.h >= 360)
+			hsv.h = 0;
 	}
-	mlx_put_image_to_window(mlx_data->mlx, mlx_data->mlx_window, mlx_data->img.mlx_img, 0, 0);
-	return(0);
+	rgb = hsv_to_rgb(hsv);
+	*(unsigned int *)pos = rgb_to_int(rgb);
 }
 
-int color_change(t_data *m_data) {
+int	color_change(t_data *m_data)
+{
+	t_xy	pos_xy;
+
 	if (!m_data->img.is_animated)
 	{
-		if (m_data->img.animation_mod == 1)
-			flash(m_data);
-		else if (m_data->img.animation_mod == 2)
-			galaxy(m_data);
-		else if (m_data->img.animation_mod == 3)
-			hsv_cycle(m_data);
+		pos_xy.x = 0;
+		while (pos_xy.x < WIN_X)
+		{
+			pos_xy.y = 0;
+			while (pos_xy.y < WIN_Y)
+			{
+				if (m_data->img.animation_mod == 1)
+					flash(m_data, pos_xy);
+				else if (m_data->img.animation_mod == 2)
+					galaxy(m_data, pos_xy);
+				else if (m_data->img.animation_mod == 3)
+					hsv_cycle(m_data, pos_xy);
+				pos_xy.y++;
+			}
+			pos_xy.x++;
+		}
+		mlx_put_image_to_window(m_data->mlx, m_data->mlx_window, \
+		m_data->img.mlx_img, 0, 0);
 	}
 	return (0);
 }
