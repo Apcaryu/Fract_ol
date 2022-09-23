@@ -16,5 +16,6 @@
 # define SCROLL_DOWN 5
 # define ESCAPE_KEY 0xFF1B
 # define SPACE_KEY 32
-
+# define RIGHT_ARROW 65363
+# define LEFT_ARROW 65361
 #endif

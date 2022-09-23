@@ -1,7 +1,8 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c fractal.c input_fonctions.c complex.c color_converter.c error.c \
-mouse_zoom.c init_fractal.c fractal_calculation.c display_fractal.c init.c
+mouse_zoom.c init_fractal.c fractal_calculation.c display_fractal.c init.c \
+color_change.c
 OBJS = $(SRCS:.c=.o)
 NAME = fractol
 

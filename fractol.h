@@ -52,6 +52,7 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 	double	zoom;
+	char 	animation_mod;
 	t_bool	is_animated;
 }	t_img;
 
@@ -113,6 +114,8 @@ void			is_out_fractal(t_data m_data, char *pos, unsigned int i);
 void			fractal_run(t_data *m_data, unsigned int iter);
 void			calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal);
 void			base_init(t_data *m_data);
+void			select_change_color(t_data *m_data, t_bool is_right);
+
 /* -----------------------------
 	fonction pour les user input
    ----------------------------- */

@@ -28,8 +28,12 @@ int	key(int key, t_data *mlx_data)
 		mlx_loop_end(mlx_data->mlx);
 		exit(EXIT_SUCCESS);
 	}
-	if (key == SPACE_KEY)
+	else if (key == SPACE_KEY)
 		mlx_data->img.is_animated = !mlx_data->img.is_animated;
+	else if (key == RIGHT_ARROW)
+		select_change_color(mlx_data, true);
+	else if (key == LEFT_ARROW)
+		select_change_color(mlx_data, false);
 }
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
@@ -42,7 +46,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		printf("Up scrol\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
 		mouse_zoom(mlx_data);
-		fractal_run(mlx_data, 50);
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 //		if (mlx_data->mod == 1)
 //			mandelbrot2(mlx_data, 50);
 //		else if (mlx_data->mod == 2)
@@ -54,7 +58,7 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		mouse_zoom(mlx_data);
 		if (mlx_data->img.zoom > 0.2)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
-		fractal_run(mlx_data, 50);
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 //		if (mlx_data->mod == 1)
 //			mandelbrot2(mlx_data, 50);
 //		else if (mlx_data->mod == 2)
