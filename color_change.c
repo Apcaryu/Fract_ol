@@ -24,8 +24,6 @@ int	flash(t_data *mlx_data)
 	unsigned int	y;
 	char			*pos;
 
-	if (!mlx_data->img.is_animated)
-		return(0);
 	x = 0;
 	while (x < WIN_X)
 	{
@@ -123,4 +121,5 @@ int color_change(t_data *m_data) {
 		else if (m_data->img.animation_mod == 3)
 			hsv_cycle(m_data);
 	}
+	return (0);
 }

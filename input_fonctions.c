@@ -31,9 +31,15 @@ int	key(int key, t_data *mlx_data)
 	else if (key == SPACE_KEY)
 		mlx_data->img.is_animated = !mlx_data->img.is_animated;
 	else if (key == RIGHT_ARROW)
+	{
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 		select_change_color(mlx_data, true);
+	}
 	else if (key == LEFT_ARROW)
+	{
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 		select_change_color(mlx_data, false);
+	}
 }
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
