@@ -11,41 +11,17 @@ t_rgb	hsv_to_rgb(t_hsv hsv_color)
 	min = max * (1 - hsv_color.s);
 	z = round((max - min) * (1 - fabs(fmod(hsv_color.h / 60.0, 2) - 1)));
 	if (0 <= hsv_color.h && hsv_color.h < 60)
-	{
-		color_out.r = max;
-		color_out.g = z + min;
-		color_out.b = min;
-	}
+		color_out = select_convertion(color_out, max, z + min, min);
 	else if (60 <= hsv_color.h && hsv_color.h < 120)
-	{
-		color_out.r = z + min;
-		color_out.g = max;
-		color_out.b = min;
-	}
+		color_out = select_convertion(color_out, z + min, max, min);
 	else if (120 <= hsv_color.h && hsv_color.h < 180)
-	{
-		color_out.r = min;
-		color_out.g = max;
-		color_out.b = z + min;
-	}
+		color_out = select_convertion(color_out, min, max, z + min);
 	else if (180 <= hsv_color.h && hsv_color.h < 240)
-	{
-		color_out.r = min;
-		color_out.g = z + min;
-		color_out.b = max;
-	}
+		color_out = select_convertion(color_out, min, z + min, max);
 	else if (240 <= hsv_color.h && hsv_color.h < 300)
-	{
-		color_out.r = z + min;
-		color_out.g = min;
-		color_out.b = max;
-	}
+		color_out = select_convertion(color_out, z + min, min, max);
 	else if (300 <= hsv_color.h && hsv_color.h < 360)
-	{
-		color_out.r = max;
-		color_out.g = min;
-		color_out.b = z + min;
-	}
+		color_out = select_convertion(color_out, max, min, z + min);
 	return (color_out);
 }
 

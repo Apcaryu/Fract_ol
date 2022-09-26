@@ -42,6 +42,9 @@ t_hsv		rgb_to_hsv(t_rgb rgb_color);
 int			rgb_to_int(t_rgb rgb_color);
 t_rgb		int_to_rgb(int int_color);
 
+t_rgb		select_convertion(t_rgb rgb, double r_mod, \
+double g_mod, double b_mod);
+
 t_color_set	set_init(void);
 
 #endif
