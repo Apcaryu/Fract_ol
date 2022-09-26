@@ -37,9 +37,9 @@ void	flash(t_data *mlx_data, t_xy pos_xy)
 	pos = mlx_data->img.addr + (pos_xy.y * mlx_data->img.line_len + \
 	pos_xy.x * (mlx_data->img.bpp / 8));
 	if (*(unsigned int *)pos <= 0x0)
-		*(unsigned int *)pos = COLOR_MIN;
+		*(unsigned int *)pos = mlx_data->img.color_min;
 	else
-		*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
+		*(unsigned int *)pos = *(unsigned int *)pos - mlx_data->img.decolor;
 }
 
 void	galaxy(t_data *mlx_data, t_xy pos_xy)

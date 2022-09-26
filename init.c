@@ -28,4 +28,6 @@ void	base_init(t_data *m_data)
 	m_data->fractal.max_y = 3;
 	m_data->img.is_animated = false;
 	m_data->img.animation_mod = 1;
+	m_data->img.color_min = 0xFEFEFE;
+	m_data->img.decolor = 0x010101;
 }
