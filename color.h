@@ -44,6 +44,8 @@ t_rgb		int_to_rgb(int int_color);
 
 t_rgb		select_convertion(t_rgb rgb, double r_mod, \
 double g_mod, double b_mod);
+int	set_rgb(t_rgb rgb_color, unsigned char min, unsigned char max, \
+unsigned char diff);
 
 t_color_set	set_init(void);
 

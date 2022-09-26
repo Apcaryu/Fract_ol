@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_converter.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 13:37:11 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/26 13:37:12 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "color.h"
 
 t_rgb	hsv_to_rgb(t_hsv hsv_color)
@@ -50,14 +62,7 @@ t_hsv	rgb_to_hsv(t_rgb rgb_color)
 		color_out.s = 1.0 - (double)min / (double)max;
 	else
 		color_out.s = 0;
-	if (max == 0 && min == 0)
-		color_out.h = 0;
-	else if (max == rgb_color.r)
-		color_out.h = fmod(60 * ((double)(rgb_color.g - rgb_color.b) / (double)diff) + 360, 360);
-	else if (max == rgb_color.g)
-		color_out.h = fmod(60 * ((double)(rgb_color.b - rgb_color.r) / (double)diff) + 120, 360);
-	else if (max == rgb_color.b)
-		color_out.h = fmod(60 * ((double)(rgb_color.r - rgb_color.g) / (double)diff) + 240, 360);
+	color_out.h = set_rgb(rgb_color, min, max, diff);
 	return (color_out);
 }
 
