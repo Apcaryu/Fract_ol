@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 14:58:27 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/26 14:58:28 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	main(int argc, char *argv[])
@@ -25,7 +37,8 @@ int	main(int argc, char *argv[])
 	mlx_data.mlx = mlx_init();
 	mlx_data.mlx_window = mlx_new_window(mlx_data.mlx, WIN_X, WIN_Y, "Fractal");
 	mlx_data.img.mlx_img = mlx_new_image(mlx_data.mlx, WIN_X, WIN_Y);
-	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
+	mlx_data.img.addr = mlx_get_data_addr(mlx_data.img.mlx_img, \
+	 &mlx_data.img.bpp, &mlx_data.img.line_len, &mlx_data.img.endian);
 	mlx_data.img.zoom = 1;
 	mandelbrot2(&mlx_data, 50);
 	// julia(&mlx_data, 5000);
