@@ -53,10 +53,6 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
 		mouse_zoom(mlx_data);
 		fractal_run(mlx_data, 50 * mlx_data->mod);
-//		if (mlx_data->mod == 1)
-//			mandelbrot2(mlx_data, 50);
-//		else if (mlx_data->mod == 2)
-//			julia(mlx_data, 5000);
 	}
 	else if (key == SCROLL_DOWN)
 	{
@@ -65,9 +61,5 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 		if (mlx_data->img.zoom > 0.2)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
 		fractal_run(mlx_data, 50 * mlx_data->mod);
-//		if (mlx_data->mod == 1)
-//			mandelbrot2(mlx_data, 50);
-//		else if (mlx_data->mod == 2)
-//			julia(mlx_data, 5000);
 	}
 }
