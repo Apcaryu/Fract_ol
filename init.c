@@ -26,5 +26,6 @@ void	base_init(t_data *m_data)
 	m_data->fractal.max_x = 3;
 	m_data->fractal.min_y = -3;
 	m_data->fractal.max_y = 3;
+	m_data->img.is_animated = false;
 	m_data->img.animation_mod = 1;
 }

@@ -82,7 +82,7 @@ int	color_change(t_data *m_data)
 {
 	t_xy	pos_xy;
 
-	if (!m_data->img.is_animated)
+	if (m_data->img.is_animated)
 	{
 		pos_xy.x = 0;
 		while (pos_xy.x < WIN_X)
