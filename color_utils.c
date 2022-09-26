@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 13:40:55 by apellegr          #+#    #+#             */
+/*   Updated: 2022/09/26 13:40:59 by apellegr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "color.h"
 
 /*
- * Is a function for hsv_to_rgb
+ * This function set a rgb color
  */
 t_rgb	select_convertion(t_rgb rgb, double r_mod, double g_mod, double b_mod)
 {
@@ -11,6 +23,9 @@ t_rgb	select_convertion(t_rgb rgb, double r_mod, double g_mod, double b_mod)
 	return (rgb);
 }
 
+/*
+ * This function convert a rgb value to hue value
+ */
 int	set_rgb(t_rgb rgb_color, unsigned char min, unsigned char max, \
 unsigned char diff)
 {
