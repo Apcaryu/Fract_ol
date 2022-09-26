@@ -40,6 +40,11 @@ int	key(int key, t_data *mlx_data)
 		fractal_run(mlx_data, 50 * mlx_data->mod);
 		select_change_color(mlx_data, false);
 	}
+	else if (mlx_data->img.animation_mod == 1 && \
+	(key == R_KEY || key == G_KEY || key == B_KEY))
+	{
+		cut_rgb_canal(mlx_data, key);
+	}
 }
 
 int	user_input(int key, int x, int y, t_data *mlx_data)

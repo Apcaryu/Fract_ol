@@ -22,3 +22,13 @@ void	is_out_fractal(t_data m_data, char *pos, unsigned int i)
 {
 	*(unsigned int *)pos = 0x00000000 + i * 0x010101 * 2;
 }
+
+void	cut_rgb_canal(t_data *m_data, int key)
+{
+	if (key == R_KEY)
+		printf("red\n");
+	else if (key == G_KEY)
+		printf("green\n");
+	else if (key == B_KEY)
+		printf("blue");
+}

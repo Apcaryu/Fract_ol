@@ -54,6 +54,8 @@ typedef struct s_img
 	double	zoom;
 	char	animation_mod;
 	t_bool	is_animated;
+	int 	color_min;
+	int 	decolor;
 }	t_img;
 
 typedef struct s_xy
@@ -112,6 +114,7 @@ void			calculate_fractal(t_data *m_data, unsigned int iter, \
 t_fractal fractal);
 void			base_init(t_data *m_data);
 void			select_change_color(t_data *m_data, t_bool is_right);
+void			cut_rgb_canal(t_data *m_data, int key);
 
 /* -----------------------------
 	fonction pour les user input
