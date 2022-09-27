@@ -10,4 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-double	ft_atof(char *str);
+#ifndef FT_ATOF_H
+# define FT_ATOF_H
+# include "libft/libft.h"
+# include <math.h>
+
+double	ft_atof(const char *str);
+#endif
