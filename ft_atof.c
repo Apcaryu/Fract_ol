@@ -14,5 +14,10 @@
 
 double	ft_atof(char *str)
 {
-	
+	unsigned int	idx;
+	double			nb_out;
+
+	idx = 0;
+	while((str[idx] < '0' || '9' < str[idx]) || str[idx] != '-' || str[idx] != '.')
+		idx++;
 }
