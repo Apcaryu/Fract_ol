@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/22 13:25:56 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/09/27 15:18:34 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "color.h"
 # include "complex.h"
 # include "error.h"
+# include "ft_atof.h"
 # include "input_macro.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/keysym.h>
