@@ -12,14 +12,8 @@
 
 #include "fractol.h"
 
-int	input_test(int key)
-{
-	printf("key = %d\n", key);
-}
-
 int	key(int key, t_data *mlx_data)
 {
-	printf("key = %d\n", key);
 	if (key == ESCAPE_KEY)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
@@ -45,6 +39,7 @@ int	key(int key, t_data *mlx_data)
 	{
 		cut_rgb_canal(mlx_data, key);
 	}
+	return (0);
 }
 
 int	user_input(int key, int x, int y, t_data *mlx_data)
@@ -67,4 +62,5 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
 		fractal_run(mlx_data, 50 * mlx_data->mod);
 	}
+	return (0);
 }

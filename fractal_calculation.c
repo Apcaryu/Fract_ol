@@ -32,10 +32,10 @@ void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal)
 	unsigned int	i;
 
 	pos_xy.x = 0;
-	while (pos_xy.x < m_data->fractal.image_x)
+	while (pos_xy.x < (unsigned int)m_data->fractal.image_x)
 	{
 		pos_xy.y = 0;
-		while (pos_xy.y < m_data->fractal.image_y)
+		while (pos_xy.y < (unsigned int)m_data->fractal.image_y)
 		{
 			pos = m_data->img.addr + (pos_xy.y * m_data->img.line_len + \
 			pos_xy.x * (m_data->img.bpp / 8));
@@ -44,7 +44,7 @@ void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal)
 			if (i == iter)
 				is_in_fractal(*m_data, pos);
 			else
-				is_out_fractal(*m_data, pos, i);
+				is_out_fractal(pos, i);
 			pos_xy.y++;
 		}
 		pos_xy.x++;

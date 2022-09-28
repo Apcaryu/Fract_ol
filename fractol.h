@@ -109,7 +109,7 @@ int				color_change(t_data *mlx_data);
 t_fractal		init_fractal(t_data *m_data);
 void			init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
 void			is_in_fractal(t_data m_data, char *pos);
-void			is_out_fractal(t_data m_data, char *pos, unsigned int i);
+void			is_out_fractal(char *pos, unsigned int i);
 void			fractal_run(t_data *m_data, unsigned int iter);
 void			calculate_fractal(t_data *m_data, unsigned int iter, \
 t_fractal fractal);

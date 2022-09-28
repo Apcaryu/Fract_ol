@@ -18,7 +18,7 @@ void	is_in_fractal(t_data m_data, char *pos)
 	(m_data.zc.z.im * 10000));
 }
 
-void	is_out_fractal(t_data m_data, char *pos, unsigned int i)
+void	is_out_fractal(char *pos, unsigned int i)
 {
 	*(unsigned int *)pos = 0x00000000 + i * 0x010101 * 2;
 }
