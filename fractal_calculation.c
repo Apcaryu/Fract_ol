@@ -20,6 +20,11 @@ unsigned int	is_in(t_data *m_data, unsigned int iter)
 	while (pow(m_data->zc.z.rl, 2) + pow(m_data->zc.z.im, 2) < 4 && i < iter)
 	{
 		m_data->zc.z = add_cmplx(power_cmplx(m_data->zc.z, 2), m_data->zc.c);
+		if (m_data->mod == 3)
+		{
+			m_data->zc.z.rl = fabs(m_data->zc.z.rl);
+			m_data->zc.z.im = fabs(m_data->zc.z.im);
+		}
 		i++;
 	}
 	return (i);

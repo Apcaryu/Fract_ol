@@ -52,6 +52,8 @@ void	fractal_type(int argc, char *argv[], t_data *mlx_data)
 {
 	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot")))
 		mlx_data->mod = 1;
+	else if (!ft_strncmp(argv[1], "burningship", ft_strlen("burningship")))
+		mlx_data->mod = 3;
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 	{
 		mlx_data->mod = 2;

@@ -35,7 +35,7 @@ t_fractal	init_fractal(t_data *m_data)
 
 void	init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal)
 {
-	if (m_data->mod == 1)
+	if (m_data->mod == 1 || m_data->mod == 3)
 	{
 		m_data->zc.z.rl = 0;
 		m_data->zc.z.im = 0;
