@@ -29,28 +29,33 @@ char	check_args(char *argv[])
 	return (mod);
 }
 
+void	julia_setup(t_data *m_data, int argc, char *argv[])
+{
+	if (argc == 3)
+	{
+		m_data->zc.c.rl = ft_atof(argv[2]);
+		m_data->zc.c.im = 0.0;
+	}
+	else if (argc == 4)
+	{
+		m_data->zc.c.rl = ft_atof(argv[2]);
+		m_data->zc.c.im = ft_atof(argv[3]);
+	}
+	else
+	{
+		m_data->zc.c.rl = -0.76;
+		m_data->zc.c.im = 0.12;
+	}
+}
+
 void	fractal_type(int argc, char *argv[], t_data *mlx_data)
 {
-	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot"/*argv[1]*/)))
+	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot")))
 		mlx_data->mod = 1;
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 	{
 		mlx_data->mod = 2;
-		if (argc == 3)
-		{
-			mlx_data->zc.c.rl = ft_atof(argv[2]);
-			mlx_data->zc.c.im = 0.0;
-		}
-		else if (argc == 4)
-		{
-			mlx_data->zc.c.rl = ft_atof(argv[2]);
-			mlx_data->zc.c.im = ft_atof(argv[3]);
-		}
-		else
-		{
-			mlx_data->zc.c.rl = -0.76;
-			mlx_data->zc.c.im = 0.12;
-		}
+		julia_setup(mlx_data, argc, argv);
 	}
 	else
 	{
