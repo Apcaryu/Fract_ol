@@ -26,6 +26,8 @@ int	main(int argc, char *argv[])
 		base_init(&mlx_data);
 		fractal_type(argc, argv, &mlx_data);
 		fractal_run(&mlx_data, 50 * mlx_data.mod);
+		mlx_hook(mlx_data.mlx_window, 17, StructureNotifyMask, \
+		&win_close, &mlx_data);
 		mlx_key_hook(mlx_data.mlx_window, key, &mlx_data);
 		mlx_mouse_hook(mlx_data.mlx_window, user_input, &mlx_data);
 		mlx_loop_hook(mlx_data.mlx, &color_change, &mlx_data);

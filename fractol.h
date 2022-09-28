@@ -116,6 +116,7 @@ t_fractal fractal);
 void			base_init(t_data *m_data);
 void			select_change_color(t_data *m_data, t_bool is_right);
 void			cut_rgb_canal(t_data *m_data, int key);
+int 			win_close(t_data *m_data);
 
 /* -----------------------------
 	fonction pour les user input
