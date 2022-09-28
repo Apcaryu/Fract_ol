@@ -38,7 +38,7 @@ void	fractal_type(int argc, char *argv[], t_data *mlx_data)
 		mlx_data->mod = 2;
 		if (argc == 3)
 		{
-			mlx_data->zc.c.rl = atof(argv[2]);
+			mlx_data->zc.c.rl = ft_atof(argv[2]);
 			mlx_data->zc.c.im = 0.0;
 		}
 		else if (argc == 4)
