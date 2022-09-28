@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	if (argc <= 1 || 4 < argc)
 	{
 		printf("C'est non\n");
+		fractol_man();
 	}
 	else if (2 <= argc && argc <= 4)
 	{
