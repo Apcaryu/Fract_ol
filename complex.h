@@ -20,8 +20,6 @@ typedef struct s_cmplx
 }	t_cmplx;
 
 t_cmplx	add_cmplx(t_cmplx nb_a, t_cmplx nb_b);
-t_cmplx	substract_cmplx(t_cmplx nb_a, t_cmplx nb_b);
 t_cmplx	multiply_cmplx(t_cmplx nb_a, t_cmplx nb_b);
-t_cmplx	div_cmplx(t_cmplx nb_a, t_cmplx nb_b);
 t_cmplx	power_cmplx(t_cmplx nb, unsigned int power);
 #endif
