@@ -33,9 +33,11 @@ void	julia_setup(t_data *m_data, int argc, char *argv[])
 
 void	fractal_type(int argc, char *argv[], t_data *mlx_data)
 {
-	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot")))
+	if (!ft_strncmp(argv[1], "mandelbrot", ft_strlen("mandelbrot")) && \
+	argc == 2)
 		mlx_data->mod = 1;
-	else if (!ft_strncmp(argv[1], "burningship", ft_strlen("burningship")))
+	else if (!ft_strncmp(argv[1], "burningship", ft_strlen("burningship")) && \
+	argc == 2)
 		mlx_data->mod = 3;
 	else if (!ft_strncmp(argv[1], "julia", ft_strlen("julia")))
 	{
