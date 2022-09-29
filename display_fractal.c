@@ -14,8 +14,12 @@
 
 void	is_in_fractal(t_data m_data, char *pos)
 {
-	*(unsigned int *)pos = 0xFFFFFF / ((m_data.zc.z.rl * 10000) / \
-	(m_data.zc.z.im * 10000));
+	if (m_data.mod == 1 || m_data.mod == 2)
+		*(unsigned int *)pos = 0xFFFFFF / ((m_data.zc.z.rl * 10000) / \
+		(m_data.zc.z.im * 10000));
+	else if (m_data.mod == 3)
+		*(unsigned int *)pos = 0xFFFFFF / (m_data.zc.z.rl * 10000) / \
+		(m_data.zc.z.im * 10000);
 }
 
 void	is_out_fractal(char *pos, unsigned int i)
@@ -43,20 +47,9 @@ void	cut_rgb_canal(t_data *m_data, int key)
 
 	min_rgb = int_to_rgb(m_data->img.color_min);
 	if (key == R_KEY)
-	{
-		printf("red\n");
 		set_min_de_color(m_data, min_rgb.r, 2);
-	}
 	else if (key == G_KEY)
-	{
-		printf("green\n");
 		set_min_de_color(m_data, min_rgb.g, 1);
-		printf("min_color = %d | decolor = %d\n", m_data->img.color_min, \
-		m_data->img.decolor);
-	}
 	else if (key == B_KEY)
-	{
-		printf("blue\n");
 		set_min_de_color(m_data, min_rgb.b, 0);
-	}
 }
