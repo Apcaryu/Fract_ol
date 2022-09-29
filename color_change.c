@@ -53,7 +53,7 @@ void	galaxy(t_data *mlx_data, t_xy pos_xy)
 	else if (*(unsigned int *)pos <= 0x0)
 		*(unsigned int *)pos = 0x010101;
 	else
-		*(unsigned int *)pos = *(unsigned int *)pos - DE_COLOR;
+		*(unsigned int *)pos = *(unsigned int *)pos - mlx_data->img.decolor;
 }
 
 void	hsv_cycle(t_data *mlx_data, t_xy pos_xy)

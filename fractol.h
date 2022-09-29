@@ -14,8 +14,6 @@
 # define FRACTOL_H
 # define WIN_X 1000
 # define WIN_Y 1000
-# define COLOR_MIN 0xFEFEFE
-# define DE_COLOR 0x010101
 # include "libft/libft.h"
 # include "color.h"
 # include "complex.h"
@@ -54,8 +52,8 @@ typedef struct s_img
 	double	zoom;
 	char	animation_mod;
 	t_bool	is_animated;
-	int 	color_min;
-	int 	decolor;
+	int		color_min;
+	int		decolor;
 }	t_img;
 
 typedef struct s_xy
@@ -115,7 +113,7 @@ t_fractal fractal);
 void			base_init(t_data *m_data);
 void			select_change_color(t_data *m_data, t_bool is_right);
 void			cut_rgb_canal(t_data *m_data, int key);
-int 			win_close(t_data *m_data);
+int				win_close(t_data *m_data);
 void			fractol_man(void);
 
 /* -----------------------------
