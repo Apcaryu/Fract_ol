@@ -74,7 +74,7 @@ int	rgb_to_int(t_rgb rgb_color)
 	return (color_out);
 }
 
-t_rgb	int_to_rgb(int int_color)
+t_rgb	int_to_rgb(unsigned int int_color)
 {
 	t_rgb	color_out;
 
