@@ -59,14 +59,12 @@ int	user_input(int key, int x, int y, t_data *mlx_data)
 	mlx_data->mouse_pos.y_pos = y;
 	if (key == SCROLL_UP)
 	{
-		printf("Up scrol\n");
 		mlx_data->img.zoom = mlx_data->img.zoom + 0.1;
 		mouse_zoom(mlx_data);
 		fractal_run(mlx_data, 50 * mlx_data->mod);
 	}
 	else if (key == SCROLL_DOWN)
 	{
-		printf("Down scrol\n");
 		mouse_zoom(mlx_data);
 		if (mlx_data->img.zoom > 0.2)
 			mlx_data->img.zoom = mlx_data->img.zoom - 0.1;
