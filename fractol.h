@@ -19,7 +19,6 @@
 # include "libft/libft.h"
 # include "color.h"
 # include "complex.h"
-# include "error.h"
 # include "ft_atof.h"
 # include "input_macro.h"
 # include "minilibx-linux/mlx.h"
