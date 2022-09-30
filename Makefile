@@ -6,7 +6,7 @@ color_change.c color_utils.c ft_atof.c fractol_man.c exit_program.c
 OBJS = $(SRCS:.c=.o)
 NAME = fractol
 
-all : $(NAME)
+all : $(NAME) thanks
 
 $(NAME) : $(OBJS)
 	make -C libft/ re
@@ -25,3 +25,6 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+thanks :
+	@echo "\033[32m\e[1mThanks to:\e[0m\n"
