@@ -14,5 +14,15 @@
 
 void	exit_program(t_data *m_data)
 {
-	(void)m_data;
+	if (m_data->mlx && m_data->img.mlx_img)
+		mlx_destroy_image(m_data->mlx, m_data->img.mlx_img);
+	if (m_data->mlx && m_data->mlx_window)
+		mlx_destroy_window(m_data->mlx, m_data->mlx_window);
+	if (m_data->mlx)
+	{
+		mlx_destroy_display(m_data->mlx);
+		mlx_loop_end(m_data->mlx);
+		free(m_data->mlx);
+		exit(EXIT_SUCCESS);
+	}
 }
