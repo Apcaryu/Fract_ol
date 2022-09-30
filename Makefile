@@ -6,7 +6,9 @@ color_change.c color_utils.c ft_atof.c fractol_man.c exit_program.c
 OBJS = $(SRCS:.c=.o)
 NAME = fractol
 
-all : $(OBJS)
+all : $(NAME)
+
+$(NAME) : $(OBJS)
 	make -C libft/ re
 	make -C minilibx-linux/
 	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
