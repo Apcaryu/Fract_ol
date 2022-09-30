@@ -15,9 +15,10 @@
 int win_close(t_data *m_data)
 {
 	mlx_destroy_image(m_data->mlx, m_data->img.mlx_img);
-	mlx_destroy_display(m_data->mlx);
 	mlx_destroy_window(m_data->mlx, m_data->mlx_window);
+	mlx_destroy_display(m_data->mlx);
 	mlx_loop_end(m_data->mlx);
+	free(m_data->mlx);
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -27,9 +28,10 @@ int	key(int key, t_data *mlx_data)
 	if (key == ESCAPE_KEY)
 	{
 		mlx_destroy_image(mlx_data->mlx, mlx_data->img.mlx_img);
-		mlx_destroy_display(mlx_data->mlx);
 		mlx_destroy_window(mlx_data->mlx, mlx_data->mlx_window);
+		mlx_destroy_display(mlx_data->mlx);
 		mlx_loop_end(mlx_data->mlx);
+		free(mlx_data->mlx);
 		exit(EXIT_SUCCESS);
 	}
 	else if (key == SPACE_KEY)
