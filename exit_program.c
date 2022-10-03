@@ -29,7 +29,7 @@ void	exit_program(t_data *m_data)
 
 void	check_mlx(t_data *m_data)
 {
-	if(!m_data->img.addr)
+	if (!m_data->img.addr)
 		if (!m_data->img.mlx_img)
 			if (!m_data->mlx_window)
 				if (!m_data->mlx)
