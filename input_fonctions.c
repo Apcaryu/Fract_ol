@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int win_close(t_data *m_data)
+int	win_close(t_data *m_data)
 {
 	exit_program(m_data);
 	return (0);
