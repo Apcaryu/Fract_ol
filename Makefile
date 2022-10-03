@@ -36,7 +36,7 @@ re : fclean all
 
 thanks :
 	@echo "\033[40m\033[37m\e[1mThanks to:\e[0m"
-	@echo "\033[5m\033[43m\033[30m<-----Lucas Triollet----->\033[0m"
+	@echo "\033[5m\033[43m\033[30m<-----Lucas Triolet----->\033[0m"
 	@echo "\033[35mplouf plouf plouf eedy aka Eliot"
 	@echo "\033[36mchsimon aka Chistopher"
 	@echo "\033[36mCopper Swordsman jgreau aka Jean Yves"
