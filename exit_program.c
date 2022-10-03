@@ -23,8 +23,8 @@ void	exit_program(t_data *m_data)
 		mlx_destroy_display(m_data->mlx);
 		mlx_loop_end(m_data->mlx);
 		free(m_data->mlx);
-		exit(EXIT_SUCCESS);
 	}
+	exit(EXIT_SUCCESS);
 }
 
 void	check_mlx(t_data *m_data)
