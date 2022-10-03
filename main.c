@@ -20,6 +20,7 @@ int	main(int argc, char *argv[])
 		fractol_man();
 	else if (2 <= argc && argc <= 4)
 	{
+		first_init(&mlx_data);
 		fractal_type(argc, argv, &mlx_data);
 		base_init(&mlx_data);
 		fractal_run(&mlx_data, 50 * mlx_data.mod);

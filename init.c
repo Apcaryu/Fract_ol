@@ -12,6 +12,14 @@
 
 #include "fractol.h"
 
+void	first_init(t_data *m_data)
+{
+	m_data->mlx = NULL;
+	m_data->mlx_window = NULL;
+	m_data->img.mlx_img = NULL;
+	m_data->img.addr = NULL;
+}
+
 void	base_init(t_data *m_data)
 {
 	m_data->mlx = mlx_init();

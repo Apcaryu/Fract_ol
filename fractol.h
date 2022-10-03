@@ -127,5 +127,6 @@ int				user_input(int key, int x, int y, t_data *mlx_data);
 
 void			fractal_type(int argc, char *argv[], t_data *mlx_data);
 void			mouse_zoom(t_data *m_data);
+void			first_init(t_data *m_data);
 
 #endif
