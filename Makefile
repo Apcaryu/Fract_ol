@@ -9,20 +9,26 @@ NAME = fractol
 all : $(NAME) thanks
 
 $(NAME) : $(OBJS)
-	make -C libft/ re
-	make -C minilibx-linux/
-	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@make -C libft/ re
+	@make -C minilibx-linux/
+	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a minilibx-linux/libmlx_Linux.a \
+	-L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@echo "\033[1m\033[32m$(NAME)\033[0m\033[32m program compilated"
+	@echo "\033[0m\033[35m\033[11m"
 
 %.o : %.c
-	$(CC) -c $^
+	@$(CC) -c $^
+	@echo "\033[35m$@ created\033[37m"
 
 clean :
-	make -C libft/ clean
-	make -C minilibx-linux/ clean
-	rm -f $(OBJS)
+	@make -C libft/ clean
+	@make -C minilibx-linux/ clean
+	@rm -f $(OBJS)
+	@echo "object file of fractol program deleted"
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "\033[33m$(NAME) program deleted\033[0m"
 
 re : fclean all
 
