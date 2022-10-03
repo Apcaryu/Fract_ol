@@ -9,10 +9,12 @@ NAME = fractol
 all : $(NAME) thanks
 
 $(NAME) : $(OBJS)
-	@make -C libft/ re
+	@make -C libft/
 	@make -C minilibx-linux/
 	@$(CC) $(CFLAGS) $(SRCS) libft/libft.a minilibx-linux/libmlx_Linux.a \
 	-L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
+	@make -C libft/ clean
+	@make -C minilibx-linux/ clean
 	@echo "\033[1m\033[32m$(NAME)\033[0m\033[32m program compilated"
 	@echo "\033[0m\033[35m\033[11m"
 
