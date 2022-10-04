@@ -30,7 +30,8 @@ static unsigned int	is_in(t_data *m_data, unsigned int iter)
 	return (i);
 }
 
-static void	calculate_fractal(t_data *m_data, unsigned int iter, t_fractal fractal)
+static void	calculate_fractal(t_data *m_data, unsigned int iter, \
+t_fractal fractal)
 {
 	char			*pos;
 	t_xy			pos_xy;
