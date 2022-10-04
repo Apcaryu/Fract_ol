@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	init_m_and_m(t_data *m_data, t_min_max *min_max, t_bool is_x)
+static void	init_m_and_m(t_data *m_data, t_min_max *min_max, t_bool is_x)
 {
 	if (is_x)
 	{
@@ -26,7 +26,7 @@ void	init_m_and_m(t_data *m_data, t_min_max *min_max, t_bool is_x)
 	}
 }
 
-double	tmp_calcul(t_data m_data, int pos, int win, t_bool is_min)
+static double	tmp_calcul(t_data m_data, int pos, int win, t_bool is_min)
 {
 	double	tmp;
 
@@ -44,7 +44,7 @@ double	tmp_calcul(t_data m_data, int pos, int win, t_bool is_min)
 	return (tmp);
 }
 
-void	as_tmp(t_min_max *min_max, double tmp, t_bool is_add)
+static void	as_tmp(t_min_max *min_max, double tmp, t_bool is_add)
 {
 	if (is_add)
 	{
@@ -58,7 +58,7 @@ void	as_tmp(t_min_max *min_max, double tmp, t_bool is_add)
 	}
 }
 
-void	z_dz(t_data *m_data, double tmp, t_bool is_inf, t_bool is_x)
+static void	z_dz(t_data *m_data, double tmp, t_bool is_inf, t_bool is_x)
 {
 	t_min_max	min_max;
 

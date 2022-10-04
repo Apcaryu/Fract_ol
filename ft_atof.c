@@ -12,7 +12,7 @@
 
 #include "ft_atof.h"
 
-double	the_while(const char *str, double *nb_out, unsigned int *idx, int mod)
+static double	the_while(const char *str, double *nb_out, unsigned int *idx, int mod)
 {
 	unsigned int	nb_after_point;
 

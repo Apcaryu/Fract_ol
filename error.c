@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void	julia_setup(t_data *m_data, int argc, char *argv[])
+static void	julia_setup(t_data *m_data, int argc, char *argv[])
 {
 	if (argc == 3)
 	{

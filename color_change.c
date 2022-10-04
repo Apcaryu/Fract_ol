@@ -30,7 +30,7 @@ void	select_change_color(t_data *m_data, t_bool is_right)
 	}
 }
 
-void	flash(t_data *mlx_data, t_xy pos_xy)
+static void	flash(t_data *mlx_data, t_xy pos_xy)
 {
 	char			*pos;
 
@@ -42,7 +42,7 @@ void	flash(t_data *mlx_data, t_xy pos_xy)
 		*(unsigned int *)pos = *(unsigned int *)pos - mlx_data->img.decolor;
 }
 
-void	galaxy(t_data *mlx_data, t_xy pos_xy)
+static void	galaxy(t_data *mlx_data, t_xy pos_xy)
 {
 	char			*pos;
 
@@ -56,7 +56,7 @@ void	galaxy(t_data *mlx_data, t_xy pos_xy)
 		*(unsigned int *)pos = *(unsigned int *)pos - mlx_data->img.decolor;
 }
 
-void	hsv_cycle(t_data *mlx_data, t_xy pos_xy)
+static void	hsv_cycle(t_data *mlx_data, t_xy pos_xy)
 {
 	char			*pos;
 	t_rgb			rgb;

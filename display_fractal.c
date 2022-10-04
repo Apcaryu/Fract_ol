@@ -27,7 +27,7 @@ void	is_out_fractal(char *pos, unsigned int i)
 	*(unsigned int *)pos = 0x00000000 + i * 0x010101 * 2;
 }
 
-void	set_min_de_color(t_data *m_data, int color_canal, char mod)
+static void	set_min_de_color(t_data *m_data, int color_canal, char mod)
 {
 	if (color_canal == 0xFE)
 	{
