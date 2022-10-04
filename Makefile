@@ -12,7 +12,7 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-SRCS = main.c input_fonctions.c complex.c color_converter.c error.c \
+SRCS = main.c input_fonctions.c complex.c color_converter.c fractal_setup.c \
 mouse_zoom.c init_fractal.c fractal_calculation.c display_fractal.c init.c \
 color_change.c color_utils.c ft_atof.c fractol_man.c exit_program.c
 OBJS = $(SRCS:.c=.o)
