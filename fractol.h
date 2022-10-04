@@ -25,11 +25,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-// ---------- lib for test -----------
-# include <stdlib.h>
-# include <stdio.h>
-// -----------------------------------
-
 typedef enum e_bool
 {
 	false = 0,
@@ -98,35 +93,52 @@ typedef struct s_data
 	t_fractal	fractal;
 }	t_data;
 
-/* -----------------------------
-	fonction pour les fractal 
-   ----------------------------- */
+/*  ------------------------
+	initialization functions
+	------------------------ */
 
-int				color_change(t_data *mlx_data);
-t_fractal		init_fractal(t_data *m_data);
-void			init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
-void			is_in_fractal(t_data m_data, char *pos);
-void			is_out_fractal(char *pos, unsigned int i);
-void			fractal_run(t_data *m_data, unsigned int iter);
-void			calculate_fractal(t_data *m_data, unsigned int iter, \
-t_fractal fractal);
-void			base_init(t_data *m_data);
-void			select_change_color(t_data *m_data, t_bool is_right);
-void			cut_rgb_canal(t_data *m_data, int key);
-int				win_close(t_data *m_data);
-void			fractol_man(void);
-void			exit_program(t_data *m_data);
-void			check_mlx(t_data *m_data);
+void		base_init(t_data *m_data);
+void		first_init(t_data *m_data);
 
-/* -----------------------------
-	fonction pour les user input
-   ----------------------------- */
+/*  -----------------
+	fractal functions
+	----------------- */
 
-int				key(int key, t_data *mlx_data);
-int				user_input(int key, int x, int y, t_data *mlx_data);
+void		fractal_type(int argc, char *argv[], t_data *mlx_data);
+t_fractal	init_fractal(t_data *m_data);
+void		init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
+void		is_in_fractal(t_data m_data, char *pos);
+void		is_out_fractal(char *pos, unsigned int i);
+void		mouse_zoom(t_data *m_data);
+void		fractal_run(t_data *m_data, unsigned int iter);
 
-void			fractal_type(int argc, char *argv[], t_data *mlx_data);
-void			mouse_zoom(t_data *m_data);
-void			first_init(t_data *m_data);
+/*  ----------------------
+	render color functions
+	---------------------- */
+
+void		select_change_color(t_data *m_data, t_bool is_right);
+void		cut_rgb_canal(t_data *m_data, int key);
+int			color_change(t_data *mlx_data);
+
+/*  ---------------------------
+	user interactions functions
+ 	--------------------------- */
+
+void		exit_program(t_data *m_data);
+int			win_close(t_data *m_data);
+int			key(int key, t_data *mlx_data);
+int			user_input(int key, int x, int y, t_data *mlx_data);
+
+/*  ------------------
+	Security functions
+	------------------ */
+
+void		check_mlx(t_data *m_data);
+
+/*  --------------
+	Help functions
+	-------------- */
+
+void		fractol_man(void);
 
 #endif
