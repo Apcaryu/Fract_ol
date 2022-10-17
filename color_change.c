@@ -14,6 +14,7 @@
 
 void	select_change_color(t_data *m_data, t_bool is_right)
 {
+	m_data->img.decolor = 0x010101;
 	if (is_right)
 	{
 		if (m_data->img.animation_mod == 3)
