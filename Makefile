@@ -38,7 +38,7 @@ clean :
 	@make -C libft/ clean
 	@make -C minilibx-linux/ clean
 	@rm -f $(OBJS)
-	@echo "object file of fractol program deleted"
+	@echo "\033[33mobject file of fractol program deleted\033[0m"
 
 fclean : clean
 	@rm -f $(NAME)
