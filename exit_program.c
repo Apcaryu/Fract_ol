@@ -27,11 +27,14 @@ void	exit_program(t_data *m_data)
 	exit(EXIT_SUCCESS);
 }
 
-void	check_mlx(t_data *m_data)
+void	check_mlx(t_data *m_data, char mod)
 {
-	if (!m_data->img.addr)
-		if (!m_data->img.mlx_img)
-			if (!m_data->mlx_window)
-				if (!m_data->mlx)
-					exit_program(m_data);
+	if (!m_data->mlx)
+		exit_program(m_data);
+	else if (!m_data->mlx_window && mod == 1)
+		exit_program(m_data);
+	else if (!m_data->img.mlx_img && mod == 2)
+		exit_program(m_data);
+	else if (!m_data->img.addr && mod == 3)
+		exit_program(m_data);
 }

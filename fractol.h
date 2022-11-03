@@ -133,7 +133,7 @@ int			user_input(int key, int x, int y, t_data *mlx_data);
 	Security functions
 	------------------ */
 
-void		check_mlx(t_data *m_data);
+void		check_mlx(t_data *m_data, char mod);
 
 /*  --------------
 	Help functions
