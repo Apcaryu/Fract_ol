@@ -15,12 +15,14 @@
 /*
  * This function set a rgb color
  */
-t_rgb	select_convertion(t_rgb rgb, double r_mod, double g_mod, double b_mod)
+t_rgb select_convertion(double r_mod, double g_mod, double b_mod)
 {
-	rgb.r = r_mod;
-	rgb.g = g_mod;
-	rgb.b = b_mod;
-	return (rgb);
+	t_rgb	color_out;
+
+	color_out.r = r_mod;
+	color_out.g = g_mod;
+	color_out.b = b_mod;
+	return (color_out);
 }
 
 /*
@@ -31,6 +33,7 @@ unsigned char diff)
 {
 	int	h_out;
 
+	h_out = 0;
 	if (max == 0 && min == 0)
 		h_out = 0;
 	else if (max == rgb_color.r)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "color.h"
-
+#include "stdio.h"
 t_rgb	hsv_to_rgb(t_hsv hsv_color)
 {
 	t_rgb	color_out;
@@ -19,21 +19,24 @@ t_rgb	hsv_to_rgb(t_hsv hsv_color)
 	double	min;
 	double	z;
 
+//	if (hsv_color.h < 0)
+//		hsv_color.h = 0;
 	max = 255 * hsv_color.v;
 	min = max * (1 - hsv_color.s);
 	z = round((max - min) * (1 - fabs(fmod(hsv_color.h / 60.0, 2) - 1)));
+//	printf("max = %f | min = %f | z = %f\n", max, min, z);
 	if (0 <= hsv_color.h && hsv_color.h < 60)
-		color_out = select_convertion(color_out, max, z + min, min);
+		color_out = select_convertion(max, z + min, min);
 	else if (60 <= hsv_color.h && hsv_color.h < 120)
-		color_out = select_convertion(color_out, z + min, max, min);
+		color_out = select_convertion(z + min, max, min);
 	else if (120 <= hsv_color.h && hsv_color.h < 180)
-		color_out = select_convertion(color_out, min, max, z + min);
+		color_out = select_convertion(min, max, z + min);
 	else if (180 <= hsv_color.h && hsv_color.h < 240)
-		color_out = select_convertion(color_out, min, z + min, max);
+		color_out = select_convertion(min, z + min, max);
 	else if (240 <= hsv_color.h && hsv_color.h < 300)
-		color_out = select_convertion(color_out, z + min, min, max);
+		color_out = select_convertion(z + min, min, max);
 	else if (300 <= hsv_color.h && hsv_color.h < 360)
-		color_out = select_convertion(color_out, max, min, z + min);
+		color_out = select_convertion(max, min, z + min);
 	return (color_out);
 }
 
@@ -81,5 +84,7 @@ t_rgb	int_to_rgb(unsigned int int_color)
 	color_out.r = (int_color / (256 * 256));
 	color_out.g = ((int_color / 256) % 256);
 	color_out.b = int_color % 256;
+//	if (color_out.r > 256 || color_out.g > 256 || color_out.b > 256)
+//		printf("r = %d | g = %d | b = %d\n", color_out.r, color_out.g, color_out.b);
 	return (color_out);
 }
