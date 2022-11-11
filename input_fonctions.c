@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 14:54:10 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/22 13:07:14 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 02:03:10 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	key(int key, t_data *mlx_data)
 		mlx_data->img.is_animated = !mlx_data->img.is_animated;
 	else if (key == RIGHT_ARROW)
 	{
-		fractal_run(mlx_data, 50 * mlx_data->mod);
 		select_change_color(mlx_data, true);
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 	}
 	else if (key == LEFT_ARROW)
 	{
-		fractal_run(mlx_data, 50 * mlx_data->mod);
 		select_change_color(mlx_data, false);
+		fractal_run(mlx_data, 50 * mlx_data->mod);
 	}
 	else if (mlx_data->img.animation_mod == 1 && \
 	(key == R_KEY || key == G_KEY || key == B_KEY))
