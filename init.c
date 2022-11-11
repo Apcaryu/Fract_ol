@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:54:55 by apellegr          #+#    #+#             */
-/*   Updated: 2022/11/11 00:02:05 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 02:07:26 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	base_init(t_data *m_data)
 	m_data->fractal.max_x = 3;
 	m_data->fractal.min_y = -3;
 	m_data->fractal.max_y = 3;
-	m_data->img.is_animated = true;
-	m_data->img.animation_mod = 3;
+	m_data->img.is_animated = false;
+	m_data->img.animation_mod = 1;
 	m_data->img.color_min = 0xFEFEFE;
 	m_data->img.decolor = 0x010101;
 }
