@@ -54,4 +54,4 @@ thanks :
 	@echo "\033[36mCopper Swordsman jgreau aka Jean Yves"
 	@echo "\033[35mjgarcia aka Julien"
 	@echo "?? aka Adrien"
-	@echo "\033[36mmtritsch aka Marie"
+	@echo "\033[36mmtritsch aka Marie\033[0m"
