@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:44:57 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/26 14:44:58 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:00:32 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_fractal fractal)
 			if (i == iter)
 				is_in_fractal(*m_data, pos);
 			else
-				is_out_fractal(pos, i);
+				is_out_fractal(*m_data, pos, i);
 			pos_xy.y++;
 		}
 		pos_xy.x++;

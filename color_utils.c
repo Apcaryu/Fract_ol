@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 13:40:55 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/26 13:40:59 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:09:13 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
  * This function set a rgb color
  */
-t_rgb select_convertion(double r_mod, double g_mod, double b_mod)
+t_rgb	select_convertion(double r_mod, double g_mod, double b_mod)
 {
 	t_rgb	color_out;
 
@@ -34,7 +34,7 @@ unsigned char diff)
 	int	h_out;
 
 	h_out = 0;
-	if (max == 0 && min == 0)
+	if (max == min)
 		h_out = 0;
 	else if (max == rgb_color.r)
 		h_out = fmod(60 * ((rgb_color.g - rgb_color.b) / \

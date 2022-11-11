@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 14:40:41 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/26 14:40:42 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:02:05 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	is_in_fractal(t_data m_data, char *pos)
 		(m_data.zc.z.im * 10000);
 }
 
-void	is_out_fractal(char *pos, unsigned int i)
+void	is_out_fractal(t_data m_data, char *pos, unsigned int i)
 {
-	*(unsigned int *)pos = 0x00000000 + i * 0x010101 * 2;
+	if (m_data.img.animation_mod == 3)
+		*(unsigned int *)pos = 0x00000000 + i * 0x010000 * 2;
+	else
+		*(unsigned int *)pos = 0x00000000 + i * 0x010101 * 2;
 }
 
 static void	set_min_de_color(t_data *m_data, int color_canal, char mod)

@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 13:15:31 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/23 13:15:34 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 01:08:55 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ static void	hsv_cycle(t_data *mlx_data, t_xy pos_xy)
 
 	pos = mlx_data->img.addr + (pos_xy.y * mlx_data->img.line_len + \
 	pos_xy.x * (mlx_data->img.bpp / 8));
-//	printf("color = %X\n", *(unsigned int*)pos);
 	rgb = int_to_rgb(*(unsigned int *)pos);
-//	printf("R = %d | G = %d | B = %d\n", rgb.r, rgb.g, rgb.b);
 	hsv = rgb_to_hsv(rgb);
 	if (hsv.h >= 360)
 		hsv.h = 0;

@@ -6,7 +6,7 @@
 /*   By: apellegr <apellegr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 13:01:13 by apellegr          #+#    #+#             */
-/*   Updated: 2022/09/27 15:18:34 by apellegr         ###   ########.fr       */
+/*   Updated: 2022/11/11 00:59:45 by apellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		fractal_type(int argc, char *argv[], t_data *mlx_data);
 t_fractal	init_fractal(t_data *m_data);
 void		init_zc(t_data *m_data, t_xy pos_xy, t_fractal fractal);
 void		is_in_fractal(t_data m_data, char *pos);
-void		is_out_fractal(char *pos, unsigned int i);
+void		is_out_fractal(t_data m_data, char *pos, unsigned int i);
 void		mouse_zoom(t_data *m_data);
 void		fractal_run(t_data *m_data, unsigned int iter);
 
